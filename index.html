@@ -83,12 +83,43 @@
     min-height: 100vh; display: grid; grid-template-columns: auto 1fr auto; align-items: end;
     padding: 2rem 3rem 4.5rem; position: relative; overflow: hidden; gap: 2rem;
   }
-  .hero-blobs { position: absolute; inset: 0; pointer-events: none; }
-  .blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: .42; animation: drift 14s ease-in-out infinite alternate; }
-  .b1 { width: 560px; height: 560px; background: var(--lime);  top: -140px; right: -80px;  animation-delay: 0s; }
-  .b2 { width: 380px; height: 380px; background: var(--ice);   bottom: 0;   left: -70px;   animation-delay: 4s; }
-  .b3 { width: 280px; height: 280px; background: var(--lav);   top: 38%;    left: 42%;     animation-delay: 8s; }
-  @keyframes drift { from { transform: translate(0,0) scale(1); } to { transform: translate(24px,16px) scale(1.07); } }
+  .hero-blobs { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(58px) saturate(112%);
+    opacity: .58;
+    mix-blend-mode: multiply;
+    animation: heroFloat 16s ease-in-out infinite alternate;
+  }
+  .b1 {
+    width: 680px;
+    height: 680px;
+    background: radial-gradient(circle at 30% 35%, #f2ff9a 0%, var(--lime) 45%, rgba(212,240,0,.1) 100%);
+    top: -220px;
+    right: -120px;
+    animation-delay: 0s;
+  }
+  .b2 {
+    width: 520px;
+    height: 520px;
+    background: radial-gradient(circle at 58% 42%, #d7eef3 0%, var(--ice) 45%, rgba(184,216,224,.08) 100%);
+    bottom: -130px;
+    left: -130px;
+    animation-delay: 3s;
+  }
+  .b3 {
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle at 50% 38%, #e5d4ff 0%, var(--lav) 50%, rgba(207,181,255,.08) 100%);
+    top: -130px;
+    left: 38%;
+    animation-delay: 6s;
+  }
+  @keyframes heroFloat {
+    from { transform: translate3d(0,0,0) scale(1) rotate(0deg); }
+    to { transform: translate3d(20px,12px,0) scale(1.07) rotate(3deg); }
+  }
 
   .hero-content { grid-column: 1; position: relative; z-index: 1; }
 
