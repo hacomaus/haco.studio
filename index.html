@@ -252,33 +252,18 @@
   .pill:nth-child(3n+3) { border-color: var(--ice);    color: var(--ice); }
   .pill:hover { background: var(--lime); color: var(--ink); border-color: var(--lime); }
 
-  .hero-picture-card { position: absolute; right: 9rem; top: calc(50% + 70px); transform: translateY(-50%) translateX(-30px) rotate(1.5deg); width: 380px; max-width: clamp(320px, 33vw, 380px); aspect-ratio: 9/11; background: #fff; box-shadow: 6px 6px 0 var(--ice); transition: transform .28s; overflow: hidden; z-index: 10; padding: 1.2rem; display: flex; align-items: center; justify-content: center; border-radius: 0; }
-  .hero-picture-card:hover { transform: translateY(-50%) translateX(-30px) rotate(0deg) translate(-3px,-3px); }
-  .hero-picture-card img { width: 100%; height: 100%; object-fit: cover; object-position: center; border-radius: 0; display: block; }
-  .hero-quote-card {
+  .hero-card-stack {
     position: absolute;
-    right: calc(9rem + 360px);
-    top: calc(50% + 125px);
-    transform: translateY(-50%) rotate(-2.2deg);
-    width: clamp(252px, 25.2vw, 315px);
-    aspect-ratio: 16/10;
-    background: var(--violet);
-    color: #fff;
-    box-shadow: 6px 6px 0 var(--lav);
-    border-radius: 0;
-    z-index: 8;
-    padding: 1.2rem 1.25rem;
-    display: flex;
-    align-items: flex-end;
-    transition: transform .28s;
+    right: 5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: min(640px, 48vw);
+    height: 540px;
+    z-index: 1;
   }
-  .hero-quote-card p {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.28rem, 2.25vw, 1.72rem);
-    line-height: 1.25;
-    font-weight: 700;
-  }
-  .hero-quote-card:hover { transform: translateY(-50%) rotate(2.4deg) translate(-3px,-3px); }
+  .hero-picture-card { position: absolute; right: 0; top: 58px; transform: rotate(1.5deg); width: 380px; max-width: clamp(320px, 33vw, 380px); aspect-ratio: 9/11; background: #fff; box-shadow: 6px 6px 0 var(--ice); transition: transform .28s; overflow: hidden; z-index: 10; padding: 1.2rem; display: flex; align-items: center; justify-content: center; border-radius: 0; }
+  .hero-picture-card:hover { transform: rotate(0deg) translate(-3px,-3px); }
+  .hero-picture-card img { width: 100%; height: 100%; object-fit: cover; object-position: center; border-radius: 0; display: block; }
 
   .about-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; max-width: 780px; margin: 4rem auto; padding: 1.5rem 2rem; }
   .acard {
@@ -294,22 +279,29 @@
   .acard:hover { transform: rotate(0deg) translate(-3px,-3px) !important; }
   .acard img { width: 100%; height: 100%; object-fit: cover; object-position: center; border-radius: 0; display: block; }
 
-  @media (max-width: 1200px) {
-    .hero-picture-card { right: 6rem; width: 320px; max-width: clamp(280px, 28vw, 320px); }
-    .hero-quote-card { right: calc(6rem + 290px); width: clamp(231px, 23.8vw, 284px); }
-  }
-
-  @media (max-width: 1080px) {
-    #hero { grid-template-columns: 1fr; grid-template-rows: auto auto; align-items: center; gap: 3rem; padding: 8rem 2rem 4.5rem; }
-    .hero-eyebrow { margin-top: 2.5rem; }
-    .hero-picture-card,
-    .hero-work-card,
-    .hero-quote-card {
-        position: relative; right: auto; top: auto;
-      transform: rotate(1.5deg); margin: 22px auto; width: 100%; max-width: 252px;
-      }
-    .hero-picture-card { margin-top: 70px; }
-    .hero-quote-card { transform: rotate(-2deg); margin-top: -8px; }
+  @media (max-width: 1280px) {
+    #hero { grid-template-columns: 1fr; grid-template-rows: 1fr auto; min-height: calc(100vh + 432px + 10rem); }
+    .hero-card-stack {
+      grid-row: 2;
+      grid-column: 1 / -1;
+      position: relative;
+      right: auto;
+      top: auto;
+      transform: none;
+      width: 304px;
+      max-width: calc(100vw - 6rem);
+      height: 432px;
+      margin: 5rem auto 5rem;
+    }
+    .hero-picture-card {
+      left: 0;
+      right: 0;
+      top: 0;
+      transform: rotate(1.5deg);
+      width: 100%;
+      max-width: none;
+      margin: 0;
+    }
   }
 
   @media (max-width: 960px) {
@@ -317,14 +309,7 @@
     .hero-eyebrow { font-size: .68rem; padding: .4rem 1rem; margin-top: 1.2rem; }
     .hero-sub { margin-bottom: 3.6rem; }
     .hero-actions { margin-top: 1.3rem; }
-    .hero-picture-card,
-    .hero-work-card,
-    .hero-quote-card { position: relative; right: auto; top: auto; transform: rotate(1.5deg); margin: 20px auto; width: 100%; max-width: 224px; }
-    .hero-picture-card { max-width: 280px; aspect-ratio: 9/11; padding: 1.2rem; margin-top: 90px; }
-    .hero-picture-card:hover,
-    .hero-work-card:hover { transform: rotate(0deg) translate(-3px,-3px); }
-    .hero-quote-card:hover { transform: rotate(2deg) translate(-3px,-3px); }
-    .hero-quote-card { transform: rotate(-2deg); margin-top: -6px; }
+    .hero-picture-card:hover { transform: rotate(0deg) translate(-3px,-3px); }
     .about-cards { grid-template-columns: 1fr; gap: 2.5rem; max-width: 540px; margin: 3rem auto 2rem; padding: 0 1.5rem; }
     .scard-icon { display: none; }
   }
@@ -618,8 +603,7 @@
     }
     .nav-links a::after { display: none; }
     .nav-links a.nav-cta { display: none; }
-    .hero-picture-card,
-    .hero-quote-card { max-width: min(280px, calc(100vw - 3rem)); }
+    .hero-picture-card { max-width: min(280px, calc(100vw - 3rem)); }
     .contact-email { overflow-wrap: anywhere; word-break: break-word; }
     footer { flex-direction: column; gap: 1rem; text-align: center; }
     .footer-info { text-align: center; }
@@ -676,11 +660,10 @@
       <span class="hero-scroll">Scroll</span>
     </div>
   </div>
-  <div class="hero-picture-card">
-    <img src="Haco_Bewerbungsbild_klein.png" alt="Haco">
-  </div>
-  <div class="hero-quote-card">
-    <p>Design und<br>Kommunikation<br>mit Haltung.</p>
+  <div class="hero-card-stack">
+    <div class="hero-picture-card">
+      <img src="Haco_Bewerbungsbild_klein.png" alt="Haco">
+    </div>
   </div>
 </section>
 
