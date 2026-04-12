@@ -542,6 +542,14 @@
 
   /* RESPONSIVE */
   @media (max-width: 960px) {
+    .ticker-wrap {
+      display: block;
+      line-height: 0;
+      margin-bottom: -1px;
+      overflow: hidden;
+    }
+    .ticker-track,
+    .ticker-track span { line-height: 1; }
     html, body { width: 100%; max-width: 100%; overflow-x: hidden; }
     #cursor { display: none !important; }
     body, a, button, input, textarea, .wi, .scard, .acard, .pill, .social-btn, .btn-primary { cursor: auto !important; }
