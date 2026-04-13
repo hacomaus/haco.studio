@@ -420,6 +420,10 @@
   .wi:nth-child(5) { grid-column: 10 / 13; grid-row: 4 / 8; }
   .wi:nth-child(6) { grid-column: 1 / 5;   grid-row: 5 / 8; }
   .wi:nth-child(7) { grid-column: 5 / 10;  grid-row: 6 / 8; }
+  .wi { z-index: 1; }
+  .wi:nth-child(3) { z-index: 3; }
+  .wi:nth-child(4) { z-index: 2; }
+  .wi:nth-child(4):hover { z-index: 4; }
   .wi-bg { position: absolute; inset: 0; transition: transform .5s cubic-bezier(.25,.46,.45,.94); }
   .wi:hover .wi-bg { transform: scale(1.05); }
   .wi:nth-child(1) .wi-bg { background: linear-gradient(135deg, var(--violet), var(--lav)); }
