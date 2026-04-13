@@ -429,6 +429,14 @@
   /* CONTACT */
   #contact { background: var(--cream); text-align: center; position: relative; overflow: hidden; }
   .contact-inner { position: relative; z-index: 1; max-width: 560px; margin: 0 auto; }
+  .contact-visual {
+    width: min(420px, 100%);
+    margin: 0 auto 1.8rem;
+    border: 2px solid var(--ink);
+    box-shadow: 8px 8px 0 var(--lav);
+    overflow: hidden;
+  }
+  .contact-visual img { width: 100%; height: auto; display: block; }
   .contact-inner .section-title { font-size: clamp(2rem, 5vw, 4.2rem); }
   .contact-sub { font-size: .98rem; line-height: 1.8; opacity: .58; margin-bottom: 2.5rem; }
   .contact-email {
@@ -934,9 +942,12 @@
 <!-- CONTACT -->
 <section id="contact">
   <div class="contact-inner reveal">
+    <div class="contact-visual">
+      <img src="Michelangelo-Sixtinische-Kapelle-1066541654.jpg" alt="Detail aus der Erschaffung Adams">
+    </div>
     <p class="section-label">Kontakt</p>
-    <h2 class="section-title">Lass uns<br>gemeinsam <em>etwas</em><br>bewegen.</h2>
-    <p class="contact-sub">Du hast ein Projekt, eine Idee oder einfach eine Frage? Ich freue mich auf deine Nachricht — egal ob Marke, Organisation oder Einzelperson.</p>
+    <h1 class="section-title">Let's get in touch.</h1>
+    <p class="contact-sub">Du hast ein Projekt, eine Idee oder einfach eine Frage?<br>Ich freue mich auf deine Nachricht!</p>
     <a href="mailto:hallo@haco.studio" class="contact-email">hallo@haco.studio</a>
     <div class="social-row">
       <a href="https://www.instagram.com" target="_blank" rel="noopener" class="social-btn">Instagram</a>
