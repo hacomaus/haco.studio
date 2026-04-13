@@ -34,27 +34,6 @@
     font-display: swap;
   }
   @font-face {
-    font-family: 'Playfair Display';
-    src: url('fonts/playfair-display-700.woff2') format('woff2');
-    font-style: normal;
-    font-weight: 700;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: 'Playfair Display';
-    src: url('fonts/playfair-display-700-italic.woff2') format('woff2');
-    font-style: italic;
-    font-weight: 700;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: 'Playfair Display';
-    src: url('fonts/playfair-display-900.woff2') format('woff2');
-    font-style: normal;
-    font-weight: 900;
-    font-display: swap;
-  }
-  @font-face {
     font-family: 'Space Mono';
     src: url('fonts/space-mono-400.woff2') format('woff2');
     font-style: normal;
@@ -66,6 +45,20 @@
     src: url('fonts/space-mono-700.woff2') format('woff2');
     font-style: normal;
     font-weight: 700;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Syne';
+    src: url('fonts/syne-700.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Syne';
+    src: url('fonts/syne-800.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 800;
     font-display: swap;
   }
 
@@ -293,7 +286,7 @@
   /* SHARED */
   section { padding: 7rem 3rem; }
   .section-label { font-family: 'Space Mono', monospace; font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; opacity: .38; margin-bottom: .7rem; }
-  .section-title { font-family: 'Playfair Display', serif; font-weight: 700; line-height: 1.05; letter-spacing: -.02em; font-size: clamp(2rem, 4.5vw, 3.8rem); margin-bottom: 3rem; }
+  .section-title { font-family: 'Syne', 'DM Sans', sans-serif; font-weight: 800; line-height: 1.05; letter-spacing: -.02em; font-size: clamp(2rem, 4.5vw, 3.8rem); margin-bottom: 3rem; }
   .section-title em { font-style: italic; color: var(--violet); font-weight: 700; }
 
   /* ABOUT */
@@ -331,7 +324,7 @@
   .acard {
     background: var(--cream); color: var(--ink);
     padding: 1.6rem 2rem; font-family: 'Space Mono', monospace; font-size: .85rem; line-height: 1.5;
-    transition: transform .28s; height: 180px; border-radius: 0;
+    transition: transform .28s; height: 180px; border-radius: 0; overflow: hidden;
   }
   .acard strong { display: block; font-size: 2.3rem; font-weight: 700; line-height: 1; margin-bottom: .9rem; margin-left: .3rem; }
   .acard:nth-child(1) { transform: rotate(-2.5deg); box-shadow: 6px 6px 0 var(--lime); }
@@ -441,7 +434,7 @@
   }
   .wi:hover .wi-info { opacity: 1; }
   .wi-cat { font-family: 'Space Mono', monospace; font-size: .52rem; letter-spacing: .15em; text-transform: uppercase; color: var(--lime); margin-bottom: .25rem; }
-  .wi-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: #fff; line-height: 1.2; margin-left: .25rem; }
+  .wi-name { font-family: 'Syne', 'DM Sans', sans-serif; font-size: 1.1rem; font-weight: 700; color: #fff; line-height: 1.2; margin-left: .25rem; }
   .wi-badge {
     position: absolute; top: .8rem; left: .8rem;
     font-family: 'Space Mono', monospace; font-size: .5rem; letter-spacing: .12em; text-transform: uppercase;
@@ -464,9 +457,9 @@
   }
   .scard:hover::before { transform: scaleX(1); }
   .scard:hover { transform: translateY(-5px); box-shadow: 0 16px 36px rgba(0,0,0,.09); }
-  .scard-num { font-family: 'Playfair Display', serif; font-size: 3.2rem; font-weight: 900; opacity: .06; line-height: 1; margin-bottom: .7rem; }
+  .scard-num { font-family: 'Syne', 'DM Sans', sans-serif; font-size: 3.2rem; font-weight: 800; opacity: .06; line-height: 1; margin-bottom: .7rem; }
   .scard-icon { font-size: 1.5rem; margin-bottom: .85rem; }
-  .scard h3 { font-family: 'Playfair Display', serif; font-size: 1.42rem; font-weight: 700; margin-bottom: .6rem; margin-left: .3rem; }
+  .scard h3 { font-family: 'Syne', 'DM Sans', sans-serif; font-size: 1.42rem; font-weight: 700; margin-bottom: .6rem; margin-left: .3rem; }
   .scard p { font-size: 1.03rem; line-height: 1.75; opacity: .62; }
 
   /* PROCESS */
@@ -489,7 +482,7 @@
   .pstep:nth-child(3) .pstep-dot { background: var(--lav);    border-color: var(--lav); }
   .pstep:nth-child(4) .pstep-dot { background: var(--violet); border-color: var(--violet); }
   .pstep-num { font-family: 'Space Mono', monospace; font-size: .73rem; letter-spacing: .18em; opacity: .32; margin-bottom: .4rem; }
-  .pstep h4 { font-family: 'Playfair Display', serif; font-size: 1.22rem; font-weight: 700; margin-bottom: .55rem; margin-left: .25rem; }
+  .pstep h4 { font-family: 'Syne', 'DM Sans', sans-serif; font-size: 1.22rem; font-weight: 700; margin-bottom: .55rem; margin-left: .25rem; }
   .pstep p { font-size: .97rem; line-height: 1.78; opacity: .52; }
 
   /* CONTACT */
@@ -503,11 +496,12 @@
     overflow: hidden;
   }
   .contact-visual img { width: 100%; height: auto; display: block; }
-  .contact-inner .section-title { font-size: clamp(2rem, 5vw, 4.2rem); }
+  .contact-inner .section-title { font-size: clamp(1.9rem, 4.5vw, 3.4rem); }
+  #contact h1.section-title { font-family: 'Syne', 'DM Sans', sans-serif; font-weight: 800; }
   .contact-sub { font-size: .98rem; line-height: 1.8; opacity: .58; margin-bottom: 2.5rem; }
   .contact-email {
     display: inline-block;
-    font-family: 'Playfair Display', serif; font-size: clamp(.95rem, 2.2vw, 1.6rem);
+    font-family: 'Syne', 'DM Sans', sans-serif; font-size: clamp(.95rem, 2.2vw, 1.6rem);
     font-weight: 700; color: var(--ink); text-decoration: none;
     border-bottom: 2.5px solid var(--lime); padding-bottom: .2rem;
     transition: color .2s, border-color .2s; margin-bottom: 2.5rem;
@@ -556,7 +550,7 @@
     margin-bottom: .9rem;
   }
   .contact-modal-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Syne', 'DM Sans', sans-serif;
     font-size: 1.6rem;
     line-height: 1.1;
     padding-left: .35rem;
