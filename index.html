@@ -5,6 +5,92 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>haco — Kommunikation, Design & Print</title>
 <style>
+    /* Monochromatic card: match other boxes, zoom image, pointy edges, hover overlay */
+    .wi-hero-link {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: block;
+      overflow: hidden;
+      min-height: 220px;
+      border-radius: 0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      background: #fff;
+    }
+    .wi-hero-link .wi-badge {
+      position: absolute;
+      top: .8rem;
+      left: .8rem;
+      font-family: 'Space Mono', monospace;
+      font-size: .5rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,.14);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      padding: .2rem .6rem;
+      border-radius: 10px;
+      z-index: 3;
+      pointer-events: none;
+    }
+    .wi-hero-link .wi-hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      border-radius: 0;
+      transform: scale(1.12); /* zoom in */
+      transition: transform 0.3s;
+    }
+    .wi-hero-link:hover .wi-hero-img,
+    .wi-hero-link:focus .wi-hero-img {
+      transform: scale(1.16);
+    }
+    .wi-hero-link .wi-info {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-start;
+      opacity: 0;
+      transition: opacity 0.3s;
+      background: linear-gradient(0deg,rgba(0,0,0,0.45) 60%,rgba(0,0,0,0.0) 100%);
+      z-index: 2;
+      border-radius: 0;
+      pointer-events: none;
+    }
+    .wi-hero-link:hover .wi-info,
+    .wi-hero-link:focus .wi-info {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .wi-hero-link .wi-cat {
+      color: #DEFF70;
+      font-family: 'Space Mono', monospace;
+      font-size: .52rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      margin-bottom: .25rem;
+    }
+    .wi-hero-link .wi-name {
+      color: #fff;
+      font-family: 'Syne', 'DM Sans', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-left: .25rem;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    }
   @font-face {
     font-family: 'DM Sans';
     src: url('fonts/dm-sans-300.woff2') format('woff2');
@@ -942,12 +1028,14 @@
       </div>
     </div>
     <div class="wi">
-      <div class="wi-bg"></div>
-      <span class="wi-badge">UI/UX</span>
-      <div class="wi-info">
-        <p class="wi-cat">Interface & Graphic Design</p>
-        <h3 class="wi-name">App Design & Screengestaltung</h3>
-      </div>
+      <a href="monochromatic/index.html" class="wi-hero-link">
+        <span class="wi-badge">UI/UX</span>
+        <img src="assets/monochromatic/MOCKUP 2.png" alt="Monochromatic Hero Mockup" class="wi-hero-img" />
+        <div class="wi-info">
+          <p class="wi-cat">Interface & Graphic Design</p>
+          <h3 class="wi-name">App Design & Screengestaltung</h3>
+        </div>
+      </a>
     </div>
     <div class="wi">
       <div class="wi-bg"></div>
@@ -1161,12 +1249,27 @@
     contactFormStatus.textContent = '';
   };
 
+  const openContactFromQuery = () => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('contact') !== '1') return;
+
+    openContactModal();
+
+    // Clean the query flag so refresh/back does not reopen unintentionally.
+    if (window.history && window.history.replaceState) {
+      const cleanUrl = window.location.pathname + window.location.hash;
+      window.history.replaceState({}, '', cleanUrl);
+    }
+  };
+
   openContactModalBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       openContactModal();
     });
   });
+
+  openContactFromQuery();
 
   closeContactModalBtn.addEventListener('click', closeContactModal);
 

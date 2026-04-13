@@ -57,12 +57,37 @@
   }
 
   * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    overscroll-behavior-y: none;
+  }
   body {
     font-family: 'DM Sans', sans-serif;
     background: linear-gradient(180deg, #d8d5ef 0%, var(--bg) 40%, #f2f2f5 100%);
     color: var(--ink);
     line-height: 1.5;
+    cursor: none;
+  }
+
+  /* CURSOR */
+  #cursor {
+    width: 12px;
+    height: 12px;
+    background: rgba(222, 255, 112, 0.8);
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width .2s, height .2s, background .2s;
+  }
+  #cursor.big {
+    width: 48px;
+    height: 48px;
+    background: rgba(142, 121, 255, 0.8);
   }
 
   /* TOPBAR */
@@ -75,18 +100,18 @@
     border-bottom: 1px solid var(--line);
   }
   .topbar-inner {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0.9rem 1.2rem;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
+    gap: var(--gap);
   }
   .brand {
     font-family: 'Syne', 'DM Sans', sans-serif;
     font-weight: 700;
-    font-size: 1.25rem;
+    font-size: 1.4rem;
     letter-spacing: 0.01em;
   }
   .home-link {
@@ -100,12 +125,38 @@
     border-radius: 999px;
     padding: 0.48rem 0.9rem;
   }
+  .topbar-actions {
+    justify-self: end;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+  }
+  .nav-contact-mobile {
+    display: inline-flex;
+    align-items: center;
+    border: 1.5px solid var(--violet);
+    border-radius: 999px;
+    background: var(--violet);
+    color: #fff;
+    font-family: 'Space Mono', monospace;
+    font-size: .62rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: .42rem .85rem;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .nav-contact-mobile:focus,
+  .nav-contact-mobile:active {
+    outline: none;
+    box-shadow: none;
+  }
 
   /* ═══════════════════════════════════════
      MASTER 2-COLUMN GRID
      ═══════════════════════════════════════ */
   main {
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 2rem 1.2rem 4rem;
     display: grid;
@@ -129,7 +180,8 @@
     padding: 1.4rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    justify-content: space-between;
+    gap: 1.35rem;
   }
   .hero-visual {
     display: flex;
@@ -139,6 +191,8 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transform: scale(1.02);
+    transform-origin: center;
     display: block;
   }
 
@@ -199,6 +253,56 @@
     margin: 0;
     color: #383b4d;
   }
+  
+  /* BRANDING */
+  .branding-grid {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--gap);
+  }
+  .branding-card {
+     background: var(--panel);
+     border: none;
+     border-radius: 18px;
+     padding: 1rem;
+  }
+  .branding-card h3 {
+    margin: 0 0 .7rem 0;
+    font-family: 'Space Mono', monospace;
+    font-size: .72rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .branding-logo img {
+     width: 100%;
+     height: auto;
+     display: block;
+     border-radius: 18px;
+     border: none;
+     background: #fff;
+  }
+  .branding-palette {
+     display: grid;
+     grid-template-columns: repeat(9, minmax(0, 1fr));
+     border: none;
+     border-radius: 14px;
+     overflow: hidden;
+     margin-bottom: .7rem;
+  }
+  .branding-palette span { height: 34px; display: block; }
+  .branding-hex {
+    font-family: 'Space Mono', monospace;
+    font-size: .62rem;
+    line-height: 1.6;
+    color: #2d3040;
+  }
+  .branding-font {
+    font-size: .95rem;
+    line-height: 1.7;
+    color: #2d3040;
+  }
 
   /* WIREFRAMES — full-width block */
   .wireframe-layout {
@@ -211,8 +315,8 @@
   .lowfid img {
     width: 100%;
     height: auto;
-    border-radius: 12px;
-    border: 1px solid var(--line);
+    border-radius: 14px;
+    border: 0;
     display: block;
   }
   .phone-strip {
@@ -230,19 +334,23 @@
   .wire-arrow svg { width: 58px; height: auto; display: block; }
 
   /* SHARED IMAGE RULES */
+  .hero-visual img,
+  .lowfid img,
   .phone-strip img,
   .hi-grid img,
   .product-grid img,
-  .showcase-grid img {
+  .showcase-grid img,
+  .marquee-track img {
     width: 100%;
     display: block;
-    border: 1px solid var(--line);
-    background: #fff;
+    border: 0;
+    background: transparent;
     object-fit: cover;
+    object-position: center;
+    border-radius: 14px;
   }
   .phone-strip img,
   .hi-grid img {
-    border-radius: 14px;
     aspect-ratio: 9 / 19;
   }
 
@@ -276,7 +384,7 @@
     grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: var(--gap);
   }
-  .product-grid img { border-radius: 12px; aspect-ratio: 1 / 1; }
+  .product-grid img { aspect-ratio: 1 / 1; }
 
   /* HI-FI SCREENS */
   .hi-grid {
@@ -293,7 +401,7 @@
     grid-template-columns: repeat(2, 1fr);
     gap: var(--gap);
   }
-  .showcase-grid img { border-radius: 16px; aspect-ratio: 4 / 3; }
+  .showcase-grid img { aspect-ratio: 4 / 3; }
 
   /* ═══════════════════════════════════════
      MARQUEE GALLERY
@@ -325,8 +433,10 @@
     overflow: hidden;
     position: relative;
   }
-  .marquee-col:hover .marquee-track {
-    animation-play-state: paused;
+  @media (hover: hover) and (pointer: fine) {
+    .marquee-col:hover .marquee-track {
+      animation-play-state: paused;
+    }
   }
   .marquee-track {
     display: flex;
@@ -344,7 +454,6 @@
     width: 100%;
     height: auto;
     display: block;
-    border-radius: 12px;
     flex-shrink: 0;
   }
   @keyframes marqueeDown {
@@ -364,12 +473,57 @@
     padding-top: 1rem;
     color: #53586f;
     font-size: 0.92rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .footer-credit {
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    font-family: 'Space Mono', monospace;
+    font-size: .72rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    opacity: .82;
+    color: var(--ink);
+  }
+  .footer-logo img {
+    height: 24px;
+    width: auto;
+    display: block;
+    opacity: .85;
+  }
+  .footer-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.35rem;
+  }
+  .footer-email {
+    display: inline-block;
+    font-family: 'Syne', 'DM Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 2px solid #DEFF70;
+    padding-bottom: 0.12rem;
+    transition: color .2s, border-color .2s;
+  }
+  .footer-email:hover {
+    color: var(--violet);
+    border-color: var(--violet);
   }
 
   /* ═══════════════════════════════════════
      RESPONSIVE
      ═══════════════════════════════════════ */
   @media (max-width: 980px) {
+    #cursor { display: none !important; }
+    body, a, button, input, textarea { cursor: auto !important; }
     main {
       grid-template-columns: 1fr;
     }
@@ -383,6 +537,16 @@
     .product-grid {
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
+    .branding-grid {
+      grid-template-columns: 1fr;
+    }
+    footer {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .footer-meta {
+      align-items: flex-start;
+    }
   }
 
   @media (max-width: 680px) {
@@ -390,17 +554,21 @@
     .topbar-inner { padding: 0.7rem 0.8rem; }
     .hero-copy { padding: 1rem; }
     .phone-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .hi-grid { grid-template-columns: 1fr; }
+    .hi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .tag { font-size: 0.66rem; }
   }
 </style>
 </head>
 <body>
+  <div id="cursor"></div>
   <header class="topbar">
     <div class="topbar-inner">
       <div class="brand">Monochromatic Case Study</div>
-      <a class="home-link" href="index.html">Zur Startseite</a>
+      <div class="topbar-actions">
+        <a class="nav-contact-mobile" href="../index.html?contact=1">KONTAKT</a>
+        <a class="home-link" href="../index.html">Zur Startseite</a>
+      </div>
     </div>
   </header>
 
@@ -461,6 +629,44 @@
         <img src="../assets/monochromatic/Bitmap%208.png" alt="Violette Haarclips" loading="lazy" decoding="async">
         <img src="../assets/monochromatic/bfda910046a84169549e7939b6422f9c.png" alt="Blaue Instant-Kameras" loading="lazy" decoding="async">
         <img src="../assets/monochromatic/Le%20Creuset%2020cm%20Casserole%20In%20Coastal%20Blue.png" alt="Le Creuset Casserole in Babyblau" loading="lazy" decoding="async">
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Branding Overview</h2>
+      <p>Kompakter Überblick über das visuelle System: Logobau, Kernfarben und Schriftbasis aus dem Original-Case-Study-Setup.</p>
+      <div class="branding-logo-fullwidth" style="grid-column: 1 / -1; margin-bottom: 2rem;">
+        <img src="../assets/images/monochromatic_logo_board.png.png" alt="Monochromatic Logo Board" style="width:100%;height:auto;display:block;border-radius:14px;border:1px solid var(--line);background:#fff;">
+      </div>
+      <div class="branding-grid branding-grid--split" style="grid-template-columns: 1fr 1fr;">
+          <article class="branding-card">
+            <h3>App Colors</h3>
+            <div class="branding-palette" style="grid-template-columns: repeat(4, minmax(0, 1fr)); margin-bottom: 0;">
+              <span style="display: flex; flex-direction: column; align-items: center; gap: 0.3rem; height:60px;">
+                <span style="display:block;width:48px;height:100%;border-radius:16px;background:#EDF2FB;"></span>
+                <span class="branding-hex">#EDF2FB</span>
+              </span>
+              <span style="display: flex; flex-direction: column; align-items: center; gap: 0.3rem; height:60px;">
+                <span style="display:block;width:48px;height:100%;border-radius:16px;background:#FFFFFF;"></span>
+                <span class="branding-hex">#FFFFFF</span>
+              </span>
+              <span style="display: flex; flex-direction: column; align-items: center; gap: 0.3rem; height:60px;">
+                <span style="display:block;width:48px;height:100%;border-radius:16px;background:#8E44FF;"></span>
+                <span class="branding-hex">#8E44FF</span>
+              </span>
+              <span style="display: flex; flex-direction: column; align-items: center; gap: 0.3rem; height:60px;">
+                <span style="display:block;width:48px;height:100%;border-radius:16px;background:#212121;"></span>
+                <span class="branding-hex">#212121</span>
+              </span>
+            </div>
+          </article>
+          <article class="branding-card">
+            <h3>App Typography</h3>
+            <div style="display: flex; flex-direction: column; gap: 0.5rem; width: 100%; margin-bottom: 0;">
+              <span style="font-family: 'Archivo Black', Arial, sans-serif; font-weight: 900; font-size: 1.2rem; letter-spacing: 0.01em;">Archivo Black</span>
+              <span style="font-family: 'San Francisco Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-weight: 400; font-size: 1.08rem; letter-spacing: 0.01em;">San Francisco Display</span>
+            </div>
+          </article>
       </div>
     </section>
 
@@ -528,8 +734,53 @@
     </section>
 
     <footer>
-      Projektkontext: Monochromatic - Color-centered mobile shopping experience.
+      <div class="footer-credit">
+        <span>Designed &amp; coded by</span>
+        <span class="footer-logo"><img src="../assets/images/hacoPunkt.svg" alt="haco."></span>
+      </div>
+      <div class="footer-meta">
+        <a href="mailto:hallo@haco.studio" class="footer-email">hallo@haco.studio</a>
+      </div>
     </footer>
   </main>
+<script>
+  // Custom cursor (desktop only)
+  const cursor = document.getElementById('cursor');
+  const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  if (cursor && hasFinePointer) {
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+
+    document.querySelectorAll('a, button, input, textarea, [role="button"], .marquee-col').forEach((el) => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('big'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('big'));
+    });
+  }
+
+  // Prevent rubber-band overscroll at document edges on touch devices.
+  let touchStartY = 0;
+
+  window.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 1) {
+      touchStartY = e.touches[0].clientY;
+    }
+  }, { passive: true });
+
+  window.addEventListener('touchmove', (e) => {
+    if (e.touches.length !== 1) return;
+
+    const currentY = e.touches[0].clientY;
+    const deltaY = currentY - touchStartY;
+    const atTop = window.scrollY <= 0;
+    const atBottom = Math.ceil(window.scrollY + window.innerHeight) >= document.documentElement.scrollHeight;
+
+    if ((atTop && deltaY > 0) || (atBottom && deltaY < 0)) {
+      e.preventDefault();
+    }
+  }, { passive: false });
+</script>
 </body>
 </html>
