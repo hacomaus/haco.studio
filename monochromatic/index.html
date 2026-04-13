@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Study - Monochromatic</title>
+<style>
+  @font-face {
+    font-family: 'DM Sans';
+    src: url('../fonts/dm-sans-400.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'DM Sans';
+    src: url('../fonts/dm-sans-500.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Syne';
+    src: url('../fonts/syne-700.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Syne';
+    src: url('../fonts/syne-800.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Space Mono';
+    src: url('../fonts/space-mono-400.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+  }
+
+  :root {
+    --bg: #ebeaf5;
+    --panel: #f8f8fc;
+    --ink: #12131a;
+    --muted: #4f5368;
+    --line: #d2d6e8;
+    --violet: #8e79ff;
+    --babyblue: #9dd0f2;
+    --pink: #ec77a2;
+    --lavender: #c8a4ef;
+    --lime: #bddb2d;
+    --teal: #25ae86;
+    --gap: 2rem;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: linear-gradient(180deg, #d8d5ef 0%, var(--bg) 40%, #f2f2f5 100%);
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  /* TOPBAR */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(10px);
+    background: rgba(248, 248, 252, 0.88);
+    border-bottom: 1px solid var(--line);
+  }
+  .topbar-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0.9rem 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .brand {
+    font-family: 'Syne', 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: 0.01em;
+  }
+  .home-link {
+    text-decoration: none;
+    color: var(--ink);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    padding: 0.48rem 0.9rem;
+  }
+
+  /* ═══════════════════════════════════════
+     MASTER 2-COLUMN GRID
+     ═══════════════════════════════════════ */
+  main {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 2rem 1.2rem 4rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--gap);
+    align-items: stretch;
+  }
+
+  /* HERO — display:contents pushes children
+     into the main grid so they share a row
+     and get equal width + height automatically */
+  .hero { display: contents; }
+
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    overflow: hidden;
+  }
+  .hero-copy {
+    padding: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .hero-visual {
+    display: flex;
+    margin: 0;
+  }
+  .hero-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .kicker {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  h1 {
+    margin: 0;
+    font-family: 'Syne', 'DM Sans', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+  .lead {
+    margin: 0;
+    font-size: 1.03rem;
+    color: #2d3040;
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+  .tag {
+    padding: 0.36rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-family: 'Space Mono', monospace;
+    border: 1px solid var(--line);
+    background: #fff;
+  }
+
+  /* ═══════════════════════════════════════
+     SECTIONS — each spans full width and
+     uses its own 2-col sub-grid so inner
+     elements snap to the same columns
+     ═══════════════════════════════════════ */
+  .section {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--gap);
+    padding-top: 3rem;
+  }
+  .section > h2,
+  .section > p {
+    grid-column: 1 / -1;
+  }
+  .section h2 {
+    margin: 0;
+    font-family: 'Syne', 'DM Sans', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.45rem, 2.4vw, 2rem);
+    letter-spacing: -0.01em;
+  }
+  .section > p {
+    margin: 0;
+    color: #383b4d;
+  }
+
+  /* WIREFRAMES — full-width block */
+  .wireframe-layout {
+    grid-column: 1 / -1;
+    display: grid;
+    gap: var(--gap);
+    justify-items: center;
+  }
+  .lowfid { padding: 0.9rem; width: 100%; margin: 0; }
+  .lowfid img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    display: block;
+  }
+  .phone-strip {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: var(--gap);
+    width: 100%;
+  }
+  .wire-arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 0;
+  }
+  .wire-arrow svg { width: 58px; height: auto; display: block; }
+
+  /* SHARED IMAGE RULES */
+  .phone-strip img,
+  .hi-grid img,
+  .product-grid img,
+  .showcase-grid img {
+    width: 100%;
+    display: block;
+    border: 1px solid var(--line);
+    background: #fff;
+    object-fit: cover;
+  }
+  .phone-strip img,
+  .hi-grid img {
+    border-radius: 14px;
+    aspect-ratio: 9 / 19;
+  }
+
+  /* COLOR SECTION */
+  .bar-stack {
+    grid-column: 1 / -1;
+    display: grid;
+    gap: 0;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .bar {
+    padding: 0.65rem 1rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #fff;
+  }
+  .b-blue { background: var(--babyblue); }
+  .b-pink { background: var(--pink); }
+  .b-lav { background: var(--lavender); }
+  .b-lime { background: var(--lime); color: #263200; }
+  .b-teal { background: var(--teal); }
+
+  .product-grid {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: var(--gap);
+  }
+  .product-grid img { border-radius: 12px; aspect-ratio: 1 / 1; }
+
+  /* HI-FI SCREENS */
+  .hi-grid {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: var(--gap);
+  }
+
+  /* SHOWCASE */
+  .showcase-grid {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--gap);
+  }
+  .showcase-grid img { border-radius: 16px; aspect-ratio: 4 / 3; }
+
+  /* ═══════════════════════════════════════
+     MARQUEE GALLERY
+     ═══════════════════════════════════════ */
+  .marquee-section {
+    grid-column: 1 / -1;
+    --scroll-duration: 45s;
+    padding-top: 3rem;
+    --marquee-gap: 1rem;
+  }
+  .marquee-section h2 {
+    margin: 0 0 var(--gap) 0;
+    font-family: 'Syne', 'DM Sans', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.45rem, 2.4vw, 2rem);
+    letter-spacing: -0.01em;
+  }
+  .marquee-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--marquee-gap);
+    height: 80vh;
+    overflow: hidden;
+    border-radius: 18px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+  }
+  .marquee-col {
+    overflow: hidden;
+    position: relative;
+  }
+  .marquee-col:hover .marquee-track {
+    animation-play-state: paused;
+  }
+  .marquee-track {
+    display: flex;
+    flex-direction: column;
+    gap: var(--marquee-gap);
+    will-change: transform;
+  }
+  .marquee-col--down .marquee-track {
+    animation: marqueeDown var(--scroll-duration) linear infinite;
+  }
+  .marquee-col--up .marquee-track {
+    animation: marqueeUp var(--scroll-duration) linear infinite;
+  }
+  .marquee-track img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    flex-shrink: 0;
+  }
+  @keyframes marqueeDown {
+    0%   { transform: translateY(0); }
+    100% { transform: translateY(calc(-50% - var(--marquee-gap) / 2)); }
+  }
+  @keyframes marqueeUp {
+    0%   { transform: translateY(calc(-50% - var(--marquee-gap) / 2)); }
+    100% { transform: translateY(0); }
+  }
+
+  /* FOOTER */
+  footer {
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--line);
+    margin-top: 1rem;
+    padding-top: 1rem;
+    color: #53586f;
+    font-size: 0.92rem;
+  }
+
+  /* ═══════════════════════════════════════
+     RESPONSIVE
+     ═══════════════════════════════════════ */
+  @media (max-width: 980px) {
+    main {
+      grid-template-columns: 1fr;
+    }
+    .section,
+    .showcase-grid {
+      grid-template-columns: 1fr;
+    }
+    .hi-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .product-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 680px) {
+    main { padding: 1.1rem 0.8rem 2.4rem; }
+    .topbar-inner { padding: 0.7rem 0.8rem; }
+    .hero-copy { padding: 1rem; }
+    .phone-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .hi-grid { grid-template-columns: 1fr; }
+    .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .tag { font-size: 0.66rem; }
+  }
+</style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">Monochromatic Case Study</div>
+      <a class="home-link" href="index.html">Zur Startseite</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <article class="card hero-copy">
+        <p class="kicker">UX / UI Case Study</p>
+        <h1>Monochromatic<br>Color-first Shopping App</h1>
+        <p class="lead">Ein Mobile-first Konzept für einen Shop, der Produkte nach Farbstimmung kuratiert. Fokus auf Farbfilter, schnelle Produktauswahl und einen klaren Checkout-Flow.</p>
+        <div class="tags">
+          <span class="tag">Mobile UI</span>
+          <span class="tag">E-Commerce</span>
+          <span class="tag">Color Navigation</span>
+          <span class="tag">Wireframes to Hi-Fi</span>
+        </div>
+      </article>
+      <figure class="card hero-visual">
+        <img src="../assets/monochromatic/MOCKUP%202.png" alt="Monochromatic App Mockup in violettem Umfeld" loading="lazy" decoding="async">
+      </figure>
+    </section>
+
+    <section class="section">
+      <h2>Von Skizze zu Struktur</h2>
+      <p>Der Prozess startete mit einer Low-Fidelity Navigation für vier Kernbereiche: Start, Farbauswahl, Produktdetail und Warenkorb. Danach wurden Interaktionen für Favoriten, Mengensteuerung und Add-to-Cart-Feedback konkretisiert.</p>
+      <div class="wireframe-layout">
+        <figure class="card lowfid">
+          <img src="../assets/monochromatic/Low-Fid.png" alt="Low-fidelity Wireframes der Monochromatic App" loading="lazy" decoding="async">
+        </figure>
+        <div class="phone-strip">
+          <img src="../assets/monochromatic/1.png" alt="Wireframe Startscreen" loading="lazy" decoding="async">
+          <img src="../assets/monochromatic/2.png" alt="Wireframe Produktliste" loading="lazy" decoding="async">
+          <img src="../assets/monochromatic/3.png" alt="Wireframe Farbsektionen" loading="lazy" decoding="async">
+          <img src="../assets/monochromatic/4.png" alt="Wireframe Produktdetail" loading="lazy" decoding="async">
+          <img src="../assets/monochromatic/5.png" alt="Wireframe Add-to-cart Dialog" loading="lazy" decoding="async">
+          <img src="../assets/monochromatic/6.png" alt="Wireframe Warenkorb" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Farblogik als Navigationsprinzip</h2>
+      <p>Die App organisiert Produkte über dominante Farbwelten. Jede Farbe erhält einen eigenen visuellen Balken und kuratierte Produktsammlungen, sodass Nutzerinnen und Nutzer direkt über Stimmung statt Kategorie entdecken können.</p>
+      <div class="bar-stack card">
+        <div class="bar b-blue">Babyblue</div>
+        <div class="bar b-pink">Valentine's Pink</div>
+        <div class="bar b-lav">Lavender</div>
+        <div class="bar b-lime">Lime Green</div>
+        <div class="bar b-teal">Blue Green</div>
+      </div>
+      <div class="product-grid">
+        <img src="../assets/monochromatic/Bitmap.png" alt="Lila Glaeser als Produktfotografie" loading="lazy" decoding="async">
+        <img src="../assets/monochromatic/Bitmap%202.png" alt="Gelbe Stillleben-Komposition" loading="lazy" decoding="async">
+        <img src="../assets/monochromatic/Bitmap%203.png" alt="Gelbes Zimmer als Farbwelt" loading="lazy" decoding="async">
+        <img src="../assets/monochromatic/Bitmap%204.png" alt="Rosa Beauty Flatlay" loading="lazy" decoding="async">
+        <img src="../assets/monochromatic/Bitmap%205.png" alt="Rosa Produktdetail" loading="lazy" decoding="async">
+        <img src="../assets/monochromatic/Bitmap%206.png" alt="Gruene Wohnraum-Komposition" loading="lazy" decoding="async">
+        <img src="../assets/monochromatic/Bitmap%207.png" alt="Gruener Tisch als Stillleben" loading="lazy" decoding="async">
+        <img src="../assets/monochromatic/Bitmap%208.png" alt="Violette Haarclips" loading="lazy" decoding="async">
+        <img src="../assets/monochromatic/bfda910046a84169549e7939b6422f9c.png" alt="Blaue Instant-Kameras" loading="lazy" decoding="async">
+        <img src="../assets/monochromatic/Le%20Creuset%2020cm%20Casserole%20In%20Coastal%20Blue.png" alt="Le Creuset Casserole in Babyblau" loading="lazy" decoding="async">
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>High-Fidelity Screens und Flows</h2>
+      <p>Die finalen Mobile Screens zeigen den kompletten Kaufprozess: farbbasierte Produktliste, Detailseite mit Mengenwahl, Save-for-later, Cross-Selling und den Checkout mit klaren Handlungsoptionen.</p>
+      <div class="hi-grid">
+        <img src="../assets/monochromatic/SCREEN1.png" alt="Produktdetail Le Creuset" loading="lazy" decoding="async">
+        <img src="../assets/monochromatic/SCREEN2.png" alt="Shop Favorite Colors" loading="lazy" decoding="async">
+        <img src="../assets/monochromatic/SCREEN3.png" alt="Shopping Cart" loading="lazy" decoding="async">
+        <img src="../assets/monochromatic/SCREEN4.png" alt="Farbkategorien uebersicht" loading="lazy" decoding="async">
+        <img src="../assets/monochromatic/SCREEN5.png" alt="Produktliste Babyblue" loading="lazy" decoding="async">
+        <img src="../assets/monochromatic/SCREEN6.png" alt="Farbkategorien erweitert" loading="lazy" decoding="async">
+      </div>
+    </section>
+
+    <section class="marquee-section">
+      <h2>App Screens im Überblick</h2>
+      <div class="marquee-wrap">
+        <div class="marquee-col marquee-col--down">
+          <div class="marquee-track">
+            <!-- Set 1: New Marquee Images -->
+            <img src="../assets/marquee/1.png" alt="Marquee 1" loading="lazy" decoding="async">
+            <img src="../assets/marquee/2.png" alt="Marquee 2" loading="lazy" decoding="async">
+            <img src="../assets/marquee/3.png" alt="Marquee 3" loading="lazy" decoding="async">
+            <img src="../assets/marquee/4.png" alt="Marquee 4" loading="lazy" decoding="async">
+            <img src="../assets/marquee/5.png" alt="Marquee 5" loading="lazy" decoding="async">
+            <img src="../assets/marquee/6.png" alt="Marquee 6" loading="lazy" decoding="async">
+            <!-- Set 2 (duplicate for seamless loop) -->
+            <img src="../assets/marquee/1.png" alt="Marquee 1" loading="lazy" decoding="async">
+            <img src="../assets/marquee/2.png" alt="Marquee 2" loading="lazy" decoding="async">
+            <img src="../assets/marquee/3.png" alt="Marquee 3" loading="lazy" decoding="async">
+            <img src="../assets/marquee/4.png" alt="Marquee 4" loading="lazy" decoding="async">
+            <img src="../assets/marquee/5.png" alt="Marquee 5" loading="lazy" decoding="async">
+            <img src="../assets/marquee/6.png" alt="Marquee 6" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="marquee-col marquee-col--up">
+          <div class="marquee-track">
+            <!-- Set 1: New Marquee Images (reverse order) -->
+            <img src="../assets/marquee/6.png" alt="Marquee 6" loading="lazy" decoding="async">
+            <img src="../assets/marquee/5.png" alt="Marquee 5" loading="lazy" decoding="async">
+            <img src="../assets/marquee/4.png" alt="Marquee 4" loading="lazy" decoding="async">
+            <img src="../assets/marquee/3.png" alt="Marquee 3" loading="lazy" decoding="async">
+            <img src="../assets/marquee/2.png" alt="Marquee 2" loading="lazy" decoding="async">
+            <img src="../assets/marquee/1.png" alt="Marquee 1" loading="lazy" decoding="async">
+            <!-- Set 2 (duplicate for seamless loop) -->
+            <img src="../assets/marquee/6.png" alt="Marquee 6" loading="lazy" decoding="async">
+            <img src="../assets/marquee/5.png" alt="Marquee 5" loading="lazy" decoding="async">
+            <img src="../assets/marquee/4.png" alt="Marquee 4" loading="lazy" decoding="async">
+            <img src="../assets/marquee/3.png" alt="Marquee 3" loading="lazy" decoding="async">
+            <img src="../assets/marquee/2.png" alt="Marquee 2" loading="lazy" decoding="async">
+            <img src="../assets/marquee/1.png" alt="Marquee 1" loading="lazy" decoding="async">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Presentation Boards</h2>
+      <div class="showcase-grid">
+        <img src="../assets/monochromatic/Artboard.png" alt="Presentation Board mit vier App Screens" loading="lazy" decoding="async">
+        <img src="../assets/monochromatic/MOCKUP%202.png" alt="3D-Praesentation der App auf mehreren Phones" loading="lazy" decoding="async">
+      </div>
+    </section>
+
+    <footer>
+      Projektkontext: Monochromatic - Color-centered mobile shopping experience.
+    </footer>
+  </main>
+</body>
+</html>
