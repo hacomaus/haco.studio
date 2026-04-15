@@ -41,6 +41,20 @@
     font-weight: 400;
     font-display: swap;
   }
+  @font-face {
+    font-family: 'Archivo Black';
+    src: url('../fonts/archivo-black-400.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'San Francisco Display';
+    src: url('../fonts/inter-400.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+  }
 
   :root {
     --bg: #ebeaf5;
@@ -63,7 +77,14 @@
     --space-card-pad-compact: 1rem;
     --text-label-sm: 0.72rem;
     --text-label-xs: 0.68rem;
-    --gap: 2rem;
+    --space-grid-desktop: 2rem;
+    --space-grid-tablet: 1.5rem;
+    --space-grid-mobile: 1rem;
+    --space-section-top-tablet: 2.4rem;
+    --space-section-top-mobile: 1.8rem;
+    --space-card-pad-tablet: 1.2rem;
+    --space-card-pad-mobile: 1rem;
+    --gap: var(--space-grid-desktop);
   }
 
   * { box-sizing: border-box; }
@@ -135,19 +156,16 @@
   }
   .nav-pill {
     display: inline-block;
-    vertical-align: middle;
     font-family: 'Space Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.08em;
+    font-size: var(--text-label-xs);
+    letter-spacing: .08em;
     text-transform: uppercase;
     line-height: 1;
-    width: auto;
-    padding: 0.42rem 0.85rem;
+    padding: .42rem .85rem;
     border: 1.5px solid;
     border-radius: var(--radius-pill);
     text-decoration: none;
     -webkit-tap-highlight-color: transparent;
-    transition: background .2s, color .2s, border-color .2s;
   }
   .topbar-actions a + a {
     margin-left: 0.55rem;
@@ -167,6 +185,11 @@
     background: var(--violet);
     color: #fff;
     border-color: var(--violet);
+  }
+  .topbar-actions .nav-pill:focus-visible {
+    outline: 2px solid var(--violet);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(142, 121, 255, 0.2);
   }
   .nav-pill-icon {
     width: 0.95rem;
@@ -283,6 +306,8 @@
   .section > p {
     margin: 0;
     color: #383b4d;
+    max-width: 74ch;
+    line-height: 1.7;
   }
   
   /* BRANDING */
@@ -291,6 +316,21 @@
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: var(--gap);
+  }
+  .branding-grid--split {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .branding-logo-fullwidth {
+    grid-column: 1 / -1;
+    margin-bottom: 1rem;
+  }
+  .branding-logo-fullwidth img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius-media);
+    border: 1px solid var(--line);
+    background: #fff;
   }
   .branding-card {
      background: var(--panel);
@@ -314,6 +354,11 @@
      border: none;
      background: #fff;
   }
+  .branding-logo-board {
+    border-radius: var(--radius-media);
+    border: 1px solid var(--line);
+    background: #fff;
+  }
   .branding-palette {
      display: grid;
      grid-template-columns: repeat(9, minmax(0, 1fr));
@@ -322,7 +367,49 @@
      overflow: hidden;
      margin-bottom: .7rem;
   }
-  .branding-palette span { height: 34px; display: block; }
+  .branding-palette--app {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-bottom: 0;
+    margin-top: 1rem;
+    overflow: visible;
+  }
+  .branding-swatch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    height: auto;
+  }
+  .branding-swatch-chip {
+    display: block;
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+  }
+  .branding-swatch-chip--edf2fb { background: #EDF2FB; }
+  .branding-swatch-chip--ffffff { background: #FFFFFF; }
+  .branding-swatch-chip--8e44ff { background: #8E44FF; }
+  .branding-swatch-chip--212121 { background: #212121; }
+  .branding-typography-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    margin-bottom: 0;
+  }
+  .branding-type-archivo {
+    font-family: 'Archivo Black', Arial, sans-serif;
+    font-weight: 400;
+    font-size: 1.2rem;
+    letter-spacing: 0.01em;
+  }
+  .branding-type-sf {
+    font-family: 'San Francisco Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 1.08rem;
+    letter-spacing: 0.01em;
+  }
+  .branding-palette:not(.branding-palette--app) > span { height: 34px; display: block; }
   .branding-hex {
     font-family: 'Space Mono', monospace;
     font-size: .62rem;
@@ -552,8 +639,13 @@
   /* ═══════════════════════════════════════
      RESPONSIVE
      ═══════════════════════════════════════ */
-  @media (max-width: 980px) {
+  @media (max-width: 960px) {
     :root { --page-gutter: 20px; }
+    :root {
+      --gap: var(--space-grid-tablet);
+      --space-section-top: var(--space-section-top-tablet);
+      --space-card-pad: var(--space-card-pad-tablet);
+    }
     #cursor { display: none !important; }
     body, a, button, input, textarea { cursor: auto !important; }
     main {
@@ -568,6 +660,9 @@
     }
     .product-grid {
       grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .product-grid img:nth-child(10) {
+      display: none;
     }
     .branding-grid {
       grid-template-columns: 1fr;
@@ -588,7 +683,12 @@
     }
   }
 
-  @media (max-width: 680px) {
+  @media (max-width: 720px) {
+    :root {
+      --gap: var(--space-grid-mobile);
+      --space-section-top: var(--space-section-top-mobile);
+      --space-card-pad: var(--space-card-pad-mobile);
+    }
     main { padding: 1.1rem var(--page-gutter) 2.4rem; }
     .topbar-inner { padding: 0.7rem var(--page-gutter); }
     .topbar-actions {
@@ -619,10 +719,17 @@
     .phone-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .hi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .product-grid img:nth-child(10) { display: block; }
   }
 
   @media (max-width: 560px) {
     .tag { font-size: 0.66rem; }
+  }
+
+  @media (max-width: 520px) {
+    .branding-grid--split {
+      grid-template-columns: 1fr !important;
+    }
   }
 </style>
 </head>
@@ -664,7 +771,7 @@
         </div>
       </article>
       <figure class="card hero-visual">
-        <img src="../assets/monochromatic/MOCKUP%202.png" alt="Monochromatic App Mockup in violettem Umfeld" loading="lazy" decoding="async">
+        <img src="../assets/monochromatic/MOCKUP%202.png" alt="Monochromatic App-Mockup im violetten Umfeld" loading="lazy" decoding="async">
       </figure>
     </section>
 
@@ -673,14 +780,14 @@
       <p>Der Prozess startete mit einer Low-Fidelity Navigation für vier Kernbereiche: Start, Farbauswahl, Produktdetail und Warenkorb. Danach wurden Interaktionen für Favoriten, Mengensteuerung und Add-to-Cart-Feedback konkretisiert.</p>
       <div class="wireframe-layout">
         <figure class="card lowfid">
-          <img src="../assets/monochromatic/Low-Fid.png" alt="Low-fidelity Wireframes der Monochromatic App" loading="lazy" decoding="async">
+          <img src="../assets/monochromatic/Low-Fid.png" alt="Low-Fidelity-Wireframes der Monochromatic App" loading="lazy" decoding="async">
         </figure>
         <div class="phone-strip">
-          <img src="../assets/monochromatic/1.png" alt="Wireframe Startscreen" loading="lazy" decoding="async">
+          <img src="../assets/monochromatic/1.png" alt="Wireframe Startbildschirm" loading="lazy" decoding="async">
           <img src="../assets/monochromatic/2.png" alt="Wireframe Produktliste" loading="lazy" decoding="async">
           <img src="../assets/monochromatic/3.png" alt="Wireframe Farbsektionen" loading="lazy" decoding="async">
           <img src="../assets/monochromatic/4.png" alt="Wireframe Produktdetail" loading="lazy" decoding="async">
-          <img src="../assets/monochromatic/5.png" alt="Wireframe Add-to-cart Dialog" loading="lazy" decoding="async">
+          <img src="../assets/monochromatic/5.png" alt="Wireframe Add-to-Cart-Dialog" loading="lazy" decoding="async">
           <img src="../assets/monochromatic/6.png" alt="Wireframe Warenkorb" loading="lazy" decoding="async">
         </div>
       </div>
@@ -700,49 +807,49 @@
         <img src="../assets/monochromatic/Bitmap.png" alt="Lila Glaeser als Produktfotografie" loading="lazy" decoding="async">
         <img src="../assets/monochromatic/Bitmap%202.png" alt="Gelbe Stillleben-Komposition" loading="lazy" decoding="async">
         <img src="../assets/monochromatic/Bitmap%203.png" alt="Gelbes Zimmer als Farbwelt" loading="lazy" decoding="async">
-        <img src="../assets/monochromatic/Bitmap%204.png" alt="Rosa Beauty Flatlay" loading="lazy" decoding="async">
+        <img src="../assets/monochromatic/Bitmap%204.png" alt="Rosa Beauty-Komposition" loading="lazy" decoding="async">
         <img src="../assets/monochromatic/Bitmap%205.png" alt="Rosa Produktdetail" loading="lazy" decoding="async">
         <img src="../assets/monochromatic/Bitmap%206.png" alt="Gruene Wohnraum-Komposition" loading="lazy" decoding="async">
         <img src="../assets/monochromatic/Bitmap%207.png" alt="Gruener Tisch als Stillleben" loading="lazy" decoding="async">
         <img src="../assets/monochromatic/Bitmap%208.png" alt="Violette Haarclips" loading="lazy" decoding="async">
         <img src="../assets/monochromatic/bfda910046a84169549e7939b6422f9c.png" alt="Blaue Instant-Kameras" loading="lazy" decoding="async">
-        <img src="../assets/monochromatic/Le%20Creuset%2020cm%20Casserole%20In%20Coastal%20Blue.png" alt="Le Creuset Casserole in Babyblau" loading="lazy" decoding="async">
+        <img src="../assets/monochromatic/Le%20Creuset%2020cm%20Casserole%20In%20Coastal%20Blue.png" alt="Le-Creuset-Cocotte in Babyblau" loading="lazy" decoding="async">
       </div>
     </section>
 
     <section class="section">
-      <h2>Branding Overview</h2>
-      <p>Kompakter Überblick über das visuelle System: Logobau, Kernfarben und Schriftbasis aus dem Original-Case-Study-Setup.</p>
-      <div class="branding-logo-fullwidth" style="grid-column: 1 / -1; margin-bottom: 2rem;">
-        <img src="../assets/images/monochromatic_logo_board.png.png" alt="Monochromatic Logo Board" style="width:100%;height:auto;display:block;border-radius:14px;border:1px solid var(--line);background:#fff;">
+      <h2>Branding</h2>
+      <p>Kompakter Überblick über das visuelle System: Logobau, Kernfarben und Schriftarten.</p>
+      <div class="branding-logo-fullwidth">
+        <img class="branding-logo-board" src="../assets/images/monochromatic_logo_board.png.png" alt="Monochromatic Logo-Board">
       </div>
-      <div class="branding-grid branding-grid--split" style="grid-template-columns: 1fr 1fr;">
+      <div class="branding-grid branding-grid--split">
           <article class="branding-card">
             <h3>App Colors</h3>
-            <div class="branding-palette" style="grid-template-columns: repeat(4, minmax(0, 1fr)); margin-bottom: 0; margin-top: 1rem;">
-              <span style="display: flex; flex-direction: column; align-items: center; gap: 0.3rem; height:60px;">
-                <span style="display:block;width:48px;height:100%;border-radius:16px;background:#EDF2FB;"></span>
+            <div class="branding-palette branding-palette--app">
+              <span class="branding-swatch">
+                <span class="branding-swatch-chip branding-swatch-chip--edf2fb"></span>
                 <span class="branding-hex">#EDF2FB</span>
               </span>
-              <span style="display: flex; flex-direction: column; align-items: center; gap: 0.3rem; height:60px;">
-                <span style="display:block;width:48px;height:100%;border-radius:16px;background:#FFFFFF;"></span>
+              <span class="branding-swatch">
+                <span class="branding-swatch-chip branding-swatch-chip--ffffff"></span>
                 <span class="branding-hex">#FFFFFF</span>
               </span>
-              <span style="display: flex; flex-direction: column; align-items: center; gap: 0.3rem; height:60px;">
-                <span style="display:block;width:48px;height:100%;border-radius:16px;background:#8E44FF;"></span>
+              <span class="branding-swatch">
+                <span class="branding-swatch-chip branding-swatch-chip--8e44ff"></span>
                 <span class="branding-hex">#8E44FF</span>
               </span>
-              <span style="display: flex; flex-direction: column; align-items: center; gap: 0.3rem; height:60px;">
-                <span style="display:block;width:48px;height:100%;border-radius:16px;background:#212121;"></span>
+              <span class="branding-swatch">
+                <span class="branding-swatch-chip branding-swatch-chip--212121"></span>
                 <span class="branding-hex">#212121</span>
               </span>
             </div>
           </article>
           <article class="branding-card">
             <h3>App Typography</h3>
-            <div style="display: flex; flex-direction: column; gap: 0.5rem; width: 100%; margin-bottom: 0;">
-              <span style="font-family: 'Archivo Black', Arial, sans-serif; font-weight: 900; font-size: 1.2rem; letter-spacing: 0.01em;">Archivo Black</span>
-              <span style="font-family: 'San Francisco Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-weight: 400; font-size: 1.08rem; letter-spacing: 0.01em;">San Francisco Display</span>
+            <div class="branding-typography-list">
+              <span class="branding-type-archivo">Archivo Black</span>
+              <span class="branding-type-sf">Inter (SF Alternative)</span>
             </div>
           </article>
       </div>
@@ -753,8 +860,8 @@
       <p>Die finalen Mobile Screens zeigen den kompletten Kaufprozess: farbbasierte Produktliste, Detailseite mit Mengenwahl, Save-for-later, Cross-Selling und den Checkout mit klaren Handlungsoptionen.</p>
       <div class="hi-grid">
         <img src="../assets/monochromatic/SCREEN1.png" alt="Produktdetail Le Creuset" loading="lazy" decoding="async">
-        <img src="../assets/monochromatic/SCREEN2.png" alt="Shop Favorite Colors" loading="lazy" decoding="async">
-        <img src="../assets/monochromatic/SCREEN3.png" alt="Shopping Cart" loading="lazy" decoding="async">
+        <img src="../assets/monochromatic/SCREEN2.png" alt="Uebersicht Lieblingsfarben" loading="lazy" decoding="async">
+        <img src="../assets/monochromatic/SCREEN3.png" alt="Warenkorb-Ansicht" loading="lazy" decoding="async">
         <img src="../assets/monochromatic/SCREEN4.png" alt="Farbkategorien uebersicht" loading="lazy" decoding="async">
         <img src="../assets/monochromatic/SCREEN5.png" alt="Produktliste Babyblue" loading="lazy" decoding="async">
         <img src="../assets/monochromatic/SCREEN6.png" alt="Farbkategorien erweitert" loading="lazy" decoding="async">
@@ -767,37 +874,37 @@
         <div class="marquee-col marquee-col--down">
           <div class="marquee-track">
             <!-- Set 1: New Marquee Images -->
-            <img src="../assets/marquee/1.png" alt="Marquee 1" loading="lazy" decoding="async">
-            <img src="../assets/marquee/2.png" alt="Marquee 2" loading="lazy" decoding="async">
-            <img src="../assets/marquee/3.png" alt="Marquee 3" loading="lazy" decoding="async">
-            <img src="../assets/marquee/4.png" alt="Marquee 4" loading="lazy" decoding="async">
-            <img src="../assets/marquee/5.png" alt="Marquee 5" loading="lazy" decoding="async">
-            <img src="../assets/marquee/6.png" alt="Marquee 6" loading="lazy" decoding="async">
+            <img src="../assets/marquee/1.png" alt="Monochromatic App-Ansicht 1" loading="lazy" decoding="async">
+            <img src="../assets/marquee/2.png" alt="Monochromatic App-Ansicht 2" loading="lazy" decoding="async">
+            <img src="../assets/marquee/3.png" alt="Monochromatic App-Ansicht 3" loading="lazy" decoding="async">
+            <img src="../assets/marquee/4.png" alt="Monochromatic App-Ansicht 4" loading="lazy" decoding="async">
+            <img src="../assets/marquee/5.png" alt="Monochromatic App-Ansicht 5" loading="lazy" decoding="async">
+            <img src="../assets/marquee/6.png" alt="Monochromatic App-Ansicht 6" loading="lazy" decoding="async">
             <!-- Set 2 (duplicate for seamless loop) -->
-            <img src="../assets/marquee/1.png" alt="Marquee 1" loading="lazy" decoding="async">
-            <img src="../assets/marquee/2.png" alt="Marquee 2" loading="lazy" decoding="async">
-            <img src="../assets/marquee/3.png" alt="Marquee 3" loading="lazy" decoding="async">
-            <img src="../assets/marquee/4.png" alt="Marquee 4" loading="lazy" decoding="async">
-            <img src="../assets/marquee/5.png" alt="Marquee 5" loading="lazy" decoding="async">
-            <img src="../assets/marquee/6.png" alt="Marquee 6" loading="lazy" decoding="async">
+            <img src="../assets/marquee/1.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+            <img src="../assets/marquee/2.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+            <img src="../assets/marquee/3.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+            <img src="../assets/marquee/4.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+            <img src="../assets/marquee/5.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+            <img src="../assets/marquee/6.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
           </div>
         </div>
         <div class="marquee-col marquee-col--up">
           <div class="marquee-track">
             <!-- Set 1: New Marquee Images (reverse order) -->
-            <img src="../assets/marquee/6.png" alt="Marquee 6" loading="lazy" decoding="async">
-            <img src="../assets/marquee/5.png" alt="Marquee 5" loading="lazy" decoding="async">
-            <img src="../assets/marquee/4.png" alt="Marquee 4" loading="lazy" decoding="async">
-            <img src="../assets/marquee/3.png" alt="Marquee 3" loading="lazy" decoding="async">
-            <img src="../assets/marquee/2.png" alt="Marquee 2" loading="lazy" decoding="async">
-            <img src="../assets/marquee/1.png" alt="Marquee 1" loading="lazy" decoding="async">
+            <img src="../assets/marquee/6.png" alt="Monochromatic App-Ansicht 6" loading="lazy" decoding="async">
+            <img src="../assets/marquee/5.png" alt="Monochromatic App-Ansicht 5" loading="lazy" decoding="async">
+            <img src="../assets/marquee/4.png" alt="Monochromatic App-Ansicht 4" loading="lazy" decoding="async">
+            <img src="../assets/marquee/3.png" alt="Monochromatic App-Ansicht 3" loading="lazy" decoding="async">
+            <img src="../assets/marquee/2.png" alt="Monochromatic App-Ansicht 2" loading="lazy" decoding="async">
+            <img src="../assets/marquee/1.png" alt="Monochromatic App-Ansicht 1" loading="lazy" decoding="async">
             <!-- Set 2 (duplicate for seamless loop) -->
-            <img src="../assets/marquee/6.png" alt="Marquee 6" loading="lazy" decoding="async">
-            <img src="../assets/marquee/5.png" alt="Marquee 5" loading="lazy" decoding="async">
-            <img src="../assets/marquee/4.png" alt="Marquee 4" loading="lazy" decoding="async">
-            <img src="../assets/marquee/3.png" alt="Marquee 3" loading="lazy" decoding="async">
-            <img src="../assets/marquee/2.png" alt="Marquee 2" loading="lazy" decoding="async">
-            <img src="../assets/marquee/1.png" alt="Marquee 1" loading="lazy" decoding="async">
+            <img src="../assets/marquee/6.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+            <img src="../assets/marquee/5.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+            <img src="../assets/marquee/4.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+            <img src="../assets/marquee/3.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+            <img src="../assets/marquee/2.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+            <img src="../assets/marquee/1.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
           </div>
         </div>
       </div>
@@ -806,7 +913,7 @@
     <section class="section">
       <h2>Presentation Boards</h2>
       <div class="showcase-grid">
-        <img src="../assets/monochromatic/Artboard.png" alt="Presentation Board mit vier App Screens" loading="lazy" decoding="async">
+        <img src="../assets/monochromatic/Artboard.png" alt="Presentation-Board mit vier App-Ansichten" loading="lazy" decoding="async">
         <img src="../assets/monochromatic/MOCKUP%202.png" alt="3D-Praesentation der App auf mehreren Phones" loading="lazy" decoding="async">
       </div>
     </section>
