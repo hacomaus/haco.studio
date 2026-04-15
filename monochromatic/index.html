@@ -132,15 +132,15 @@
     text-transform: uppercase;
     border: 1.5px solid var(--ink);
     border-radius: var(--radius-pill);
-    display: inline;
+    display: inline-block;
   }
   .topbar-actions {
     justify-self: end;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55rem;
+    display: block;
   }
   .topbar-actions a {
+    display: inline-block;
+    vertical-align: middle;
     font-family: 'Space Mono', monospace;
     font-size: 0.68rem;
     letter-spacing: 0.08em;
@@ -149,8 +149,11 @@
     width: auto;
     padding: 0.42rem 0.85rem;
   }
+  .topbar-actions a + a {
+    margin-left: 0.55rem;
+  }
   .nav-contact-mobile {
-    display: inline;
+    display: inline-block;
     border: 1.5px solid var(--violet);
     border-radius: var(--radius-pill);
     background: var(--violet);
@@ -573,7 +576,14 @@
   @media (max-width: 680px) {
     main { padding: 1.1rem var(--page-gutter) 2.4rem; }
     .topbar-inner { padding: 0.7rem var(--page-gutter); }
-    .topbar-actions { gap: 0.4rem; }
+    .topbar-actions {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .topbar-actions a + a {
+      margin-left: 0;
+    }
     .nav-pill-icon {
       display: block;
     }
