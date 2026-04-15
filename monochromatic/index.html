@@ -338,6 +338,10 @@
       border-radius: var(--radius-card);
      padding: 1rem;
   }
+  .branding-card--typography {
+    display: flex;
+    flex-direction: column;
+  }
   .branding-card h3 {
     margin: 0 0 .7rem 0;
     font-family: 'Space Mono', monospace;
@@ -395,18 +399,21 @@
     flex-direction: column;
     gap: 0.5rem;
     width: 100%;
-    margin-bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    align-items: center;
+    text-align: center;
   }
   .branding-type-archivo {
     font-family: 'Archivo Black', Arial, sans-serif;
     font-weight: 400;
-    font-size: 1.2rem;
+    font-size: 1.35rem;
     letter-spacing: 0.01em;
   }
   .branding-type-sf {
     font-family: 'San Francisco Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
     font-weight: 400;
-    font-size: 1.08rem;
+    font-size: 1.2rem;
     letter-spacing: 0.01em;
   }
   .branding-palette:not(.branding-palette--app) > span { height: 34px; display: block; }
@@ -845,11 +852,11 @@
               </span>
             </div>
           </article>
-          <article class="branding-card">
+          <article class="branding-card branding-card--typography">
             <h3>App Typography</h3>
             <div class="branding-typography-list">
               <span class="branding-type-archivo">Archivo Black</span>
-              <span class="branding-type-sf">Inter (SF Alternative)</span>
+              <span class="branding-type-sf">San Francisco Display</span>
             </div>
           </article>
       </div>
