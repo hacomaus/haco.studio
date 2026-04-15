@@ -225,17 +225,27 @@
     line-height: 1;
     color: var(--ink); text-decoration: none; position: relative;
   }
+  .nav-pill {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: var(--text-label-xs);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    line-height: 1;
+    padding: .42rem .85rem;
+    border: 1.5px solid;
+    border-radius: var(--radius-pill);
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+  }
   .nav-links a::after {
     content: ''; position: absolute; bottom: -3px; left: 0;
     width: 0; height: 2px; background: var(--lime); transition: width .25s;
   }
   .nav-links a:hover::after { width: 100%; }
   .nav-links a.nav-cta {
-    border: 1.5px solid var(--ink);
-    border-radius: var(--radius-pill);
-    padding: .42rem .85rem;
+    border-color: var(--ink);
     transition: background .2s, color .2s, border-color .2s;
-    -webkit-tap-highlight-color: transparent;
   }
   .nav-links a.nav-cta::after { display: none; }
   .nav-links a.nav-cta:hover {
@@ -265,17 +275,9 @@
     border-color: var(--ink);
   }
   .nav-contact-mobile {
-    border: 1.5px solid var(--violet);
-    border-radius: var(--radius-pill);
+    border-color: var(--violet);
     background: var(--violet);
     color: #fff;
-    font-family: 'Space Mono', monospace;
-    font-size: var(--text-label-xs);
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    padding: .42rem .85rem;
-    text-decoration: none;
-    -webkit-tap-highlight-color: transparent;
   }
   .nav-links a.nav-cta:focus,
   .nav-links a.nav-cta:active,
@@ -871,14 +873,14 @@
     </svg>
   </a>
   <div class="nav-mobile-actions">
-    <a href="#" class="nav-contact-mobile open-contact-modal-trigger">Kontakt</a>
+    <a href="#" class="nav-contact-mobile nav-pill open-contact-modal-trigger">Kontakt</a>
     <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="main-menu" aria-label="Menue oeffnen">MENÜ</button>
   </div>
     <ul class="nav-links" id="main-menu">
     <li><a href="#work">Arbeiten</a></li>
     <li><a href="#services">Leistungen</a></li>
     <li><a href="#process">Prozess</a></li>
-    <li><a href="#" class="nav-cta open-contact-modal-trigger" id="open-contact-modal">Kontakt</a></li>
+    <li><a href="#" class="nav-cta nav-pill open-contact-modal-trigger" id="open-contact-modal">Kontakt</a></li>
   </ul>
 </nav>
 
