@@ -648,6 +648,7 @@
     transition: color .2s, border-color .2s; margin-bottom: 2.5rem;
   }
   .contact-email:hover { color: var(--violet); border-color: var(--violet); }
+  .contact-mobile-paragraph-break { display: none; }
   .social-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
   .social-btn {
     font-family: 'Space Mono', monospace; font-size: .63rem; letter-spacing: .12em; text-transform: uppercase;
@@ -916,6 +917,13 @@
   }
 
   @media (max-width: 720px) {
+    .contact-mobile-paragraph-break {
+      display: block;
+      height: .85rem;
+    }
+    #contact {
+      padding-bottom: calc(var(--section-pad-y-mobile) - .6rem);
+    }
     #work {
       padding-top: 5.4rem;
       padding-bottom: 6.6rem;
@@ -1218,7 +1226,7 @@
     </div>
     <p class="section-label">Kontakt</p>
     <h1 class="section-title">Let's get in touch.</h1>
-    <p class="contact-sub">Du hast ein Projekt, eine Idee oder einfach eine Frage?<br>Ich freue mich auf deine Nachricht!</p>
+    <p class="contact-sub">Du hast ein Projekt, eine Idee<span class="contact-mobile-paragraph-break" aria-hidden="true"></span>oder einfach eine Frage? Ich freue mich auf deine Nachricht!</p>
     <a href="mailto:hallo@haco.studio" class="contact-email">hallo@haco.studio</a>
     <div class="social-row">
       <a href="https://www.instagram.com" target="_blank" rel="noopener" class="social-btn">Instagram</a>
