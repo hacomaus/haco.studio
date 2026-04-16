@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="Frame 5.svg">
 <title>haco — Kommunikation, Design & Print</title>
 <style>
   @font-face {
@@ -64,12 +65,15 @@
 
   :root {
     --lime:   #DEFF70;
+    --lime-deep: #8AA033;
     --lav:    #CFB5FF;
+    --lav-deep: #7E5FAE;
     --ice:    #B8D8E0;
+    --ice-deep: #5E7F89;
     --violet: #AD81FD;
     --cream:  #F5F5F0;
     --ink:    #111111;
-    --page-gutter: 50px;
+    --page-gutter: 60px;
     --section-pad-y: 7rem;
     --section-pad-y-mobile: 5rem;
     --space-grid-lg: 2.5rem;
@@ -209,7 +213,7 @@
   /* HERO */
   #hero {
     min-height: 100vh; display: grid; grid-template-columns: auto 1fr auto; align-items: center;
-    padding: 1.1rem var(--page-gutter) 4.5rem; position: relative; overflow: hidden; gap: 2.6rem;
+    padding: 3.1rem var(--page-gutter) 4.5rem; position: relative; overflow: hidden; gap: 2.6rem;
   }
   .hero-blobs { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
   .blob {
@@ -455,15 +459,20 @@
       max-width: none;
       margin: 0;
     }
-    .hero-content {
-      min-height: auto;
-      justify-content: flex-start;
-      padding-top: 0;
-    }
     .work-grid {
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 1.7rem;
     }
+  }
+
+  @media (max-width: 1460px) and (min-width: 961px) {
+    .hero-content {
+      min-height: 620px;
+      justify-content: center;
+      padding-top: 4.4rem;
+    }
+    .hero-opening { font-size: 5rem; }
+    .hero-sub { font-size: 1.2rem; }
   }
 
   @media (max-width: 1180px) and (min-width: 961px) {
@@ -505,13 +514,43 @@
     box-shadow: 8px 8px 0 var(--wi-shadow, var(--lav));
     aspect-ratio: 4 / 3;
   }
+  .wi,
+  .wi-placeholder {
+    border-radius: 0;
+    border-width: 2px;
+    aspect-ratio: 4 / 3;
+  }
   .wi:nth-child(6n+1) { --wi-shadow: var(--lav); }
   .wi:nth-child(6n+2) { --wi-shadow: var(--lime); }
   .wi:nth-child(6n+3) { --wi-shadow: var(--ice); }
   .wi:nth-child(6n+4) { --wi-shadow: var(--ice); }
   .wi:nth-child(6n+5) { --wi-shadow: var(--lime); }
   .wi:nth-child(6n+6) { --wi-shadow: var(--lav); }
+  .wi:nth-child(6n+1) { --wi-shadow-deep: var(--lav-deep); }
+  .wi:nth-child(6n+2) { --wi-shadow-deep: var(--lime-deep); }
+  .wi:nth-child(6n+3) { --wi-shadow-deep: var(--ice-deep); }
+  .wi:nth-child(6n+4) { --wi-shadow-deep: var(--ice-deep); }
+  .wi:nth-child(6n+5) { --wi-shadow-deep: var(--lime-deep); }
+  .wi:nth-child(6n+6) { --wi-shadow-deep: var(--lav-deep); }
   .wi.branding-colors { --wi-shadow: var(--lav); }
+  .wi.branding-colors { --wi-shadow-deep: var(--lav-deep); }
+  .wi.wi-print {
+    --wi-shadow: var(--ice);
+    --wi-shadow-deep: var(--ice-deep);
+  }
+  .wi.wi-politik {
+    --wi-shadow: var(--lime);
+    --wi-shadow-deep: var(--lime-deep);
+  }
+  .wi.wi-politik img {
+    object-fit: cover;
+    object-position: center;
+    padding: 0;
+    transform: none;
+  }
+  .wi.wi-politik:hover img {
+    transform: none;
+  }
   .wi img {
     position: absolute;
     inset: 0;
@@ -536,9 +575,9 @@
     padding: var(--space-overlay-y) var(--space-overlay-x);
     background: linear-gradient(
       to top,
-      color-mix(in srgb, var(--wi-shadow, var(--lav)) 68%, transparent) 0%,
-      color-mix(in srgb, var(--wi-shadow, var(--lav)) 42%, transparent) 38%,
-      transparent 70%
+      color-mix(in srgb, var(--wi-shadow-deep, var(--lav-deep)) 86%, transparent) 0%,
+      color-mix(in srgb, var(--wi-shadow-deep, var(--lav-deep)) 62%, transparent) 42%,
+      transparent 78%
     );
     opacity: 0; transition: opacity .25s;
   }
@@ -576,8 +615,9 @@
   }
   .wi-badge {
     position: absolute; top: .8rem; left: .8rem;
-    font-family: 'Space Mono', monospace; font-size: calc(.5rem + 2pt); letter-spacing: .12em; text-transform: uppercase;
-    background: rgba(255,255,255,.14); backdrop-filter: blur(8px); color: #fff; padding: .2rem .6rem; border-radius: var(--radius-sm);
+    font-family: 'Space Mono', monospace; font-size: calc(.56rem + 2pt); letter-spacing: .07em; text-transform: uppercase;
+    background: var(--wi-shadow, var(--lav)); color: var(--ink); padding: .24rem .68rem; border-radius: var(--radius-sm);
+    border: 1.2px solid var(--ink);
   }
 
   /* SERVICES */
@@ -855,8 +895,13 @@
       grid-template-columns: 1fr;
       grid-template-rows: auto auto;
       align-items: start;
-      padding: 5.1rem var(--page-gutter) 3.5rem;
+      padding: 7.1rem var(--page-gutter) 3.5rem;
       gap: 1rem;
+    }
+    .hero-content {
+      min-height: auto;
+      justify-content: flex-start;
+      padding-top: 0;
     }
     #about { grid-template-columns: 1fr; gap: 3rem; }
     .section-label,
@@ -1106,31 +1151,31 @@
   <h2 class="section-title reveal">Projekte,<br>die <em>zählen.</em></h2>
   <div class="work-grid reveal">
     <div class="wi">
-      <img src="assets/monochromatic/SCREEN1.png" alt="Branding-Projekt mit klarer Markenfuehrung" loading="lazy" decoding="async" width="806" height="1680">
+      <img src="flyer_mock_up_3 1.png" alt="Partopreno Projektvorschau" loading="lazy" decoding="async" width="500" height="750">
       <span class="wi-badge">Branding</span>
       <div class="wi-info">
-        <h3 class="wi-name">Markenentwicklung & Visual System</h3>
+        <h3 class="wi-name">Partopreno</h3>
       </div>
     </div>
-    <div class="wi">
-      <img src="assets/monochromatic/SCREEN2.png" alt="Politische Kommunikationskampagne im Einsatz" loading="lazy" decoding="async" width="806" height="1680">
-      <span class="wi-badge">Politik</span>
-      <div class="wi-info">
-        <h3 class="wi-name">Kampagne & Wahlkampfmaterial</h3>
-      </div>
-    </div>
-    <div class="wi">
-      <img src="assets/monochromatic/SCREEN3.png" alt="Editorial-Layout fuer Magazin und Publikation" loading="lazy" decoding="async" width="806" height="1680">
+    <div class="wi wi-print">
+      <img src="Slash_MockUp.png" alt="s/ash Projektvorschau" loading="lazy" decoding="async" width="806" height="1680">
       <span class="wi-badge">Print</span>
       <div class="wi-info">
-        <h3 class="wi-name">Magazin & Publikationsgestaltung</h3>
+        <h3 class="wi-name">s/ash Magazin</h3>
+      </div>
+    </div>
+    <div class="wi wi-politik">
+      <img src="Frame 7.svg" alt="Politische Kommunikationskampagne im Einsatz" loading="lazy" decoding="async" width="806" height="1680">
+      <span class="wi-badge">Politik</span>
+      <div class="wi-info">
+        <h3 class="wi-name">Social Media & Wahlkampf</h3>
       </div>
     </div>
     <div class="wi">
-      <img src="assets/monochromatic/SCREEN4.png" alt="NGO-Kommunikation mit visueller Kampagnenlinie" loading="lazy" decoding="async" width="806" height="1680">
+      <img src="Frame 6.png" alt="NGO-Kommunikation mit visueller Kampagnenlinie" loading="lazy" decoding="async" width="806" height="1680">
       <span class="wi-badge">NGO</span>
       <div class="wi-info">
-        <h3 class="wi-name">Kommunikationsstrategie & Kampagne</h3>
+        <h3 class="wi-name">Blicki e.V.</h3>
       </div>
     </div>
     <div class="wi branding-colors">
