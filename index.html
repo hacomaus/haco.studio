@@ -69,7 +69,7 @@
     --violet: #AD81FD;
     --cream:  #F5F5F0;
     --ink:    #111111;
-    --page-gutter: clamp(20px, 4vw, 48px);
+    --page-gutter: 80px;
     --section-pad-y: 7rem;
     --section-pad-y-mobile: 5rem;
     --space-grid-lg: 2.5rem;
@@ -352,7 +352,7 @@
   #about .section-title em { color: var(--lime); }
   #about .about-body p em { color: var(--lav); font-style: italic; font-weight: 700; }
   .about-body p { font-size: .98rem; line-height: 1.85; font-weight: 300; opacity: .75; margin: 0; }
-  .about-pills { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: 1.8rem; }
+  .about-pills { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: 2.35rem; }
   .pill {
     font-family: 'Space Mono', monospace; font-size: .64rem; font-weight: 500; line-height: 1;
     letter-spacing: .1em; text-transform: uppercase;
@@ -579,10 +579,6 @@
     background: rgba(255,255,255,.14); backdrop-filter: blur(8px); color: #fff; padding: .2rem .6rem; border-radius: var(--radius-sm);
   }
 
-  @media (max-width: 960px) {
-    .work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  }
-
   /* SERVICES */
   #services { background: var(--ice); }
   #services .section-label { color: var(--ink); }
@@ -648,7 +644,6 @@
     transition: color .2s, border-color .2s; margin-bottom: 2.5rem;
   }
   .contact-email:hover { color: var(--violet); border-color: var(--violet); }
-  .contact-mobile-paragraph-break { display: none; }
   .social-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
   .social-btn {
     font-family: 'Space Mono', monospace; font-size: .63rem; letter-spacing: .12em; text-transform: uppercase;
@@ -783,14 +778,14 @@
     align-items: center;
     gap: .55rem;
     font-family: 'Space Mono', monospace;
-    font-size: .72rem;
+    font-size: .66rem;
     letter-spacing: .08em;
     text-transform: uppercase;
     opacity: .82;
   }
   .footer-logo svg { height: 28px; width: auto; display: block; color: var(--ink); opacity: .85; }
   .logo-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
-  .footer-info { font-family: 'Space Mono', monospace; font-size: .75rem; letter-spacing: .1em; opacity: .8; text-align: right; line-height: 1.7; }
+  .footer-info { font-family: 'Space Mono', monospace; font-size: .66rem; letter-spacing: .1em; opacity: .8; text-align: right; line-height: 1.4; white-space: nowrap; }
 
   /* REVEAL */
   .reveal { opacity: 0; transform: translateY(32px); transition: opacity .6s ease, transform .6s ease; }
@@ -808,7 +803,7 @@
 
   /* RESPONSIVE */
   @media (max-width: 960px) {
-    :root { --page-gutter: 20px; }
+    :root { --page-gutter: 30px; }
     .ticker-wrap {
       display: block;
       line-height: 0;
@@ -917,10 +912,6 @@
   }
 
   @media (max-width: 720px) {
-    .contact-mobile-paragraph-break {
-      display: block;
-      height: .85rem;
-    }
     #contact {
       padding-bottom: calc(var(--section-pad-y-mobile) - .6rem);
     }
@@ -1073,10 +1064,9 @@
   <div class="about-body reveal">
     <h2 class="section-title">Interdisziplinär.<br><em>Engagiert.</em><br>Wirksam.</h2>
     <p>Ich heiße Hacer, die meisten nennen mich Haco.</p>
-    <p>Ich arbeite an der <em>Schnittstelle von Kommunikation, Design und gesellschaftlichem Engagement.</em></p>
-    <p>Durch meine Erfahrung in politischer Kommunikation, Markenentwicklung und Design verbinde ich <em>Strategie, Gestaltung und Inhalt zu einem klaren Gesamtbild.</em></p>
-    <p>Ich arbeite an Projekten, die etwas bewirken sollen. Das reicht von politischen Kampagnen über Corporate Identity für Organisationen bis hin zu Editorial Design im Printbereich.</p>
-    <p>Mein Ansatz ist <em>direkt.</em> Ich höre zu, ordne, treffe klare Entscheidungen und setze präzise um. Inhaltlich klar, visuell aufregend und immer mit Blick auf das, was tatsächlich ankommt.</p>
+    <p>Ich arbeite an der <em>Schnittstelle von Kommunikation, Design und gesellschaftlichem Engagement.</em> Mein Hintergrund in politischer Kommunikation, Markenentwicklung und Gestaltung ermöglicht es mir,<br><em>Strategie, Inhalt und visuelle Form</em> zu einem stimmigen Gesamtbild zu verbinden.</p>
+    <p>Meine Arbeit reicht von politischen Kampagnen über Corporate Identity für Organisationen bis hin zu Editorial Design im Printbereich. Mich interessieren Projekte, die <em>Relevanz haben und etwas auslösen.</em></p>
+    <p>Ich arbeite strukturiert und klar. Ich höre zu, ordne Inhalte und treffe fundierte Entscheidungen, die sich konsequent in der Gestaltung wiederfinden. Mein Fokus liegt auf <em>präziser Umsetzung, klarer Kommunikation und einer visuellen Sprache, die trägt.</em></p>
     <div class="about-pills">
       <span class="pill">Politische Kommunikation</span>
       <span class="pill">Branding & CI</span>
@@ -1247,8 +1237,7 @@
     </div>
   </div>
   <div class="footer-info">
-    <p>© 2026 Hacer Aydemir</p>
-    <p>Berlin, Deutschland</p>
+    <p>© 2026 Hacer Aydemir · Berlin, Deutschland</p>
   </div>
 </footer>
 
