@@ -13,9 +13,9 @@
 <meta property="og:description" content="Grafik Designerin, UI Designerin und Kommunikationsdesignerin in Berlin mit Fokus auf Kommunikationsdesign digital und print.">
 <meta property="og:url" content="https://haco.studio/">
 <meta property="og:site_name" content="haco.studio">
-<meta property="og:image" content="https://haco.studio/assets/images/Haco_Bewerbungsbild_klein.png">
+<meta property="og:image" content="https://haco.studio/assets/images/profile-photo.png">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" type="image/svg+xml" href="Frame 5.svg">
+<link rel="icon" type="image/svg+xml" href="assets/icons/project-frame-05.svg">
 <title>Hacer Aydemir | Grafik Designer Berlin, UI & Kommunikationsdesign</title>
 <script type="application/ld+json">
 {
@@ -27,7 +27,7 @@
       "alternateName": "Haco",
       "jobTitle": "Grafik Designerin, UI Designerin und Kommunikationsdesignerin",
       "url": "https://haco.studio/",
-      "image": "https://haco.studio/assets/images/Haco_Bewerbungsbild_klein.png",
+      "image": "https://haco.studio/assets/images/profile-photo.png",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Berlin",
@@ -72,56 +72,56 @@
 <style>
   @font-face {
     font-family: 'DM Sans';
-    src: url('fonts/dm-sans-300.woff2') format('woff2');
+    src: url('assets/fonts/dm-sans-300.woff2') format('woff2');
     font-style: normal;
     font-weight: 300;
     font-display: swap;
   }
   @font-face {
     font-family: 'DM Sans';
-    src: url('fonts/dm-sans-300-italic.woff2') format('woff2');
+    src: url('assets/fonts/dm-sans-300-italic.woff2') format('woff2');
     font-style: italic;
     font-weight: 300;
     font-display: swap;
   }
   @font-face {
     font-family: 'DM Sans';
-    src: url('fonts/dm-sans-400.woff2') format('woff2');
+    src: url('assets/fonts/dm-sans-400.woff2') format('woff2');
     font-style: normal;
     font-weight: 400;
     font-display: swap;
   }
   @font-face {
     font-family: 'DM Sans';
-    src: url('fonts/dm-sans-500.woff2') format('woff2');
+    src: url('assets/fonts/dm-sans-500.woff2') format('woff2');
     font-style: normal;
     font-weight: 500;
     font-display: swap;
   }
   @font-face {
     font-family: 'Space Mono';
-    src: url('fonts/space-mono-400.woff2') format('woff2');
+    src: url('assets/fonts/space-mono-400.woff2') format('woff2');
     font-style: normal;
     font-weight: 400;
     font-display: swap;
   }
   @font-face {
     font-family: 'Space Mono';
-    src: url('fonts/space-mono-700.woff2') format('woff2');
+    src: url('assets/fonts/space-mono-700.woff2') format('woff2');
     font-style: normal;
     font-weight: 700;
     font-display: swap;
   }
   @font-face {
     font-family: 'Syne';
-    src: url('fonts/syne-700.woff2') format('woff2');
+    src: url('assets/fonts/syne-700.woff2') format('woff2');
     font-style: normal;
     font-weight: 700;
     font-display: swap;
   }
   @font-face {
     font-family: 'Syne';
-    src: url('fonts/syne-800.woff2') format('woff2');
+    src: url('assets/fonts/syne-800.woff2') format('woff2');
     font-style: normal;
     font-weight: 800;
     font-display: swap;
@@ -747,6 +747,7 @@
     border: 2px solid var(--ink);
     box-shadow: 8px 8px 0 var(--lav);
     overflow: hidden;
+    transition: transform .28s, box-shadow .28s;
   }
   .contact-visual img { width: 100%; height: auto; display: block; }
   #contact h1.section-title { font-family: 'Syne', 'DM Sans', sans-serif; font-weight: 800; }
@@ -906,6 +907,21 @@
   .reveal { opacity: 0; transform: translateY(32px); transition: opacity .6s ease, transform .6s ease; }
   .reveal.on { opacity: 1; transform: translateY(0); }
   .section-label.reveal.on { opacity: .38; }
+
+  @media (min-width: 961px) {
+    .hero-picture-card:hover {
+      transform: translate(-3px, -3px) !important;
+    }
+    .contact-visual:hover {
+      transform: translate(-3px, -3px);
+    }
+    .wi {
+      transition: transform .28s, box-shadow .28s;
+    }
+    .wi:hover {
+      transform: translate(-3px, -3px);
+    }
+  }
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
@@ -1126,7 +1142,7 @@
   </div>
   <div class="hero-card-stack">
     <div class="hero-picture-card">
-      <img src="assets/images/Haco_Bewerbungsbild_klein.png" alt="Portraet von Hacer Aydemir, Grafik und UI Designerin in Berlin" width="500" height="750">
+      <img src="assets/images/profile-photo.png" alt="Portraet von Hacer Aydemir, Grafik und UI Designerin in Berlin" width="500" height="750">
     </div>
   </div>
 </section>
@@ -1232,28 +1248,28 @@
   <h2 class="section-title reveal">Projekte,<br>die <em>zählen.</em></h2>
   <div class="work-grid reveal">
     <div class="wi">
-      <img src="flyer_mock_up_3 1.png" alt="Partopreno Projektvorschau" loading="lazy" decoding="async" width="500" height="750">
+      <img src="assets/images/partopreno-flyer.png" alt="Partopreno Projektvorschau" loading="lazy" decoding="async" width="500" height="750">
       <span class="wi-badge">Branding</span>
       <div class="wi-info">
         <h3 class="wi-name">Partopreno</h3>
       </div>
     </div>
     <div class="wi wi-print">
-      <img src="Slash_MockUp.png" alt="s/ash Projektvorschau" loading="lazy" decoding="async" width="806" height="1680">
+      <img src="assets/images/slash-magazin-cover.png" alt="s/ash Projektvorschau" loading="lazy" decoding="async" width="806" height="1680">
       <span class="wi-badge">Print</span>
       <div class="wi-info">
         <h3 class="wi-name">s/ash Magazin</h3>
       </div>
     </div>
     <div class="wi wi-politik">
-      <img src="Frame 7.svg" alt="Politische Kommunikationskampagne im Einsatz" loading="lazy" decoding="async" width="806" height="1680">
+      <img src="assets/icons/project-frame-07.svg" alt="Politische Kommunikationskampagne im Einsatz" loading="lazy" decoding="async" width="806" height="1680">
       <span class="wi-badge">Politik</span>
       <div class="wi-info">
         <h3 class="wi-name">Social Media & Wahlkampf</h3>
       </div>
     </div>
     <div class="wi">
-      <img src="Frame 6.png" alt="NGO-Kommunikation mit visueller Kampagnenlinie" loading="lazy" decoding="async" width="806" height="1680">
+      <img src="assets/images/project-frame-06.png" alt="NGO-Kommunikation mit visueller Kampagnenlinie" loading="lazy" decoding="async" width="806" height="1680">
       <span class="wi-badge">NGO</span>
       <div class="wi-info">
         <h3 class="wi-name">Blicki e.V.</h3>
@@ -1261,7 +1277,7 @@
     </div>
     <div class="wi branding-colors">
       <a href="monochromatic/index.html" class="wi-link" aria-label="Zum monochromatic Projekt">
-        <img src="assets/monochromatic/MOCKUP 2.png" alt="UI- und App-Design mit modernem Interface" loading="lazy" decoding="async" width="2800" height="2100">
+        <img src="assets/images/monochromatic-mockup.png" alt="UI- und App-Design mit modernem Interface" loading="lazy" decoding="async" width="2800" height="2100">
         <span class="wi-badge">UI/UX</span>
         <div class="wi-info">
           <h3 class="wi-name">monochromatic</h3>
@@ -1339,7 +1355,7 @@
 <section id="contact">
   <div class="contact-inner reveal">
     <div class="contact-visual">
-      <img src="assets/images/Michelangelo-Sixtinische-Kapelle-1066541654.jpg" alt="Detail aus der Erschaffung Adams" loading="lazy" decoding="async" width="1200" height="800">
+      <img src="assets/images/contact-visual.jpg" alt="Detail aus der Erschaffung Adams" loading="lazy" decoding="async" width="1200" height="800">
     </div>
     <p class="section-label">Kontakt</p>
     <h2 class="section-title">Let's get in touch.</h2>
