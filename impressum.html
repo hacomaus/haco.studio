@@ -85,7 +85,7 @@
   main {
     width: min(820px, calc(100% - (var(--page-gutter) * 2)));
     margin: 0 auto;
-    padding: 8rem 0 9rem;
+    padding: 4rem 0 9rem;
   }
   .eyebrow {
     display: inline-block;
@@ -131,6 +131,7 @@
     overflow-wrap: anywhere;
   }
   .legal-block { display: grid; gap: .65rem; }
+  .legal-card h3 { margin-top: 0; }
   p, li { margin: 0; font-size: 1rem; line-height: 1.75; font-weight: 300; }
   ul { margin: .2rem 0 0; padding-left: 1.3rem; }
   a { color: inherit; }
@@ -161,7 +162,7 @@
   @media (max-width: 720px) {
     :root { --page-gutter: 24px; }
     nav { padding-top: .75rem; padding-bottom: .75rem; }
-    main { width: calc(100% - (var(--page-gutter) * 2)); padding: 5rem 0 6rem; }
+    main { width: calc(100% - (var(--page-gutter) * 2)); padding: 2.5rem 0 6rem; }
     h1 { margin-bottom: 3.2rem; font-size: clamp(3rem, 16vw, 4.7rem); }
     h1 em { display: block; font-size: .78em; }
     .legal-section + .legal-section { margin-top: 4.5rem; }
