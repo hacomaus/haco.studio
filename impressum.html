@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="assets/icons/project-frame-05.svg">
+<title>Impressum &amp; Datenschutz | haco.studio</title>
+<style>
+  @font-face {
+    font-family: 'DM Sans';
+    src: url('assets/fonts/dm-sans-300.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'DM Sans';
+    src: url('assets/fonts/dm-sans-400.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Space Mono';
+    src: url('assets/fonts/space-mono-400.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Syne';
+    src: url('assets/fonts/syne-700.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+  }
+
+  :root {
+    --lime: #DEFF70;
+    --lav: #CFB5FF;
+    --ice: #B8D8E0;
+    --violet: #AD81FD;
+    --cream: #F5F5F0;
+    --ink: #111111;
+    --page-gutter: 60px;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    opacity: .5;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .9rem var(--page-gutter);
+    border-bottom: 1px solid rgba(17,17,17,.1);
+  }
+  .nav-logo { color: var(--ink); display: block; }
+  .nav-logo img { display: block; width: 78px; height: 34px; object-fit: contain; }
+  .back-link, .footer-link {
+    color: var(--ink);
+    font-family: 'Space Mono', monospace;
+    font-size: .68rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+  .back-link { text-decoration: none; }
+  .back-link:hover, .footer-link:hover, a:hover { color: var(--violet); }
+  main {
+    width: min(820px, calc(100% - (var(--page-gutter) * 2)));
+    margin: 0 auto;
+    padding: 8rem 0 9rem;
+  }
+  .eyebrow {
+    display: inline-block;
+    margin-bottom: 1.3rem;
+    padding: .45rem .8rem;
+    background: var(--ink);
+    color: var(--lime);
+    font-family: 'Space Mono', monospace;
+    font-size: .68rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+  h1, h2, h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+  }
+  h1 {
+    margin: 0 0 4.5rem;
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: .95;
+    letter-spacing: -.02em;
+  }
+  h1 em { color: var(--violet); font-style: normal; }
+  h2 {
+    margin: 0 0 2rem;
+    font-size: clamp(2rem, 4.5vw, 3.4rem);
+    line-height: 1;
+  }
+  h3 {
+    margin: 2.2rem 0 .7rem;
+    font-size: 1.35rem;
+    line-height: 1.15;
+  }
+  .legal-section + .legal-section { margin-top: 6rem; }
+  .legal-card {
+    display: grid;
+    gap: 1.25rem;
+    min-width: 0;
+    padding: 2.4rem;
+    border: 2px solid var(--ink);
+    background: #fff;
+    box-shadow: 8px 8px 0 var(--lav);
+    overflow-wrap: anywhere;
+  }
+  .legal-block { display: grid; gap: .65rem; }
+  p, li { margin: 0; font-size: 1rem; line-height: 1.75; font-weight: 300; }
+  ul { margin: .2rem 0 0; padding-left: 1.3rem; }
+  a { color: inherit; }
+  .placeholder {
+    display: inline;
+    padding: .08rem .22rem;
+    background: var(--lime);
+    font-weight: 400;
+  }
+  .review-note {
+    padding: 1rem 1.1rem;
+    background: color-mix(in srgb, var(--ice) 46%, white);
+    border-left: 4px solid var(--ice);
+  }
+  .review-note strong { font-weight: 400; }
+  footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.3rem var(--page-gutter);
+    border-top: 1px solid rgba(17,17,17,.1);
+    font-family: 'Space Mono', monospace;
+    font-size: .65rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  footer p { font: inherit; line-height: 1.4; }
+  @media (max-width: 720px) {
+    :root { --page-gutter: 24px; }
+    nav { padding-top: .75rem; padding-bottom: .75rem; }
+    main { width: calc(100% - (var(--page-gutter) * 2)); padding: 5rem 0 6rem; }
+    h1 { margin-bottom: 3.2rem; font-size: clamp(3rem, 16vw, 4.7rem); }
+    h1 em { display: block; font-size: .78em; }
+    .legal-section + .legal-section { margin-top: 4.5rem; }
+    .legal-card { padding: 1.4rem; box-shadow: 5px 5px 0 var(--lav); }
+    p, li { font-size: 1rem; }
+    footer { flex-direction: column; padding: 1.2rem var(--page-gutter); }
+  }
+</style>
+</head>
+<body>
+<nav aria-label="Hauptnavigation">
+  <a href="index.html" class="nav-logo" aria-label="Zur Startseite">
+    <img src="assets/icons/logo-haco-punkt.svg" alt="haco.">
+  </a>
+  <a href="index.html" class="back-link">Zur Startseite</a>
+</nav>
+
+<main>
+  <span class="eyebrow">Rechtliches</span>
+  <h1>Impressum<br><em>&amp; Datenschutz</em></h1>
+
+  <section class="legal-section" id="impressum">
+    <h2>Impressum</h2>
+    <div class="legal-card">
+      <div class="legal-block">
+        <h3>Angaben gemäß § 5 DDG</h3>
+        <p><strong>Betreiber von haco.studio</strong><br>
+          <span class="placeholder">Hacer Aydemir</span><br>
+          <span class="placeholder">Levetzowstraße 19a</span><br>
+          <span class="placeholder">10555 Berlin</span><br>
+          Deutschland
+        </p>
+      </div>
+      <div class="legal-block">
+        <h3>Kontakt</h3>
+        <p>E-Mail: <a href="mailto:hallo@haco.studio">hallo@haco.studio</a><br>
+          Kontaktformular: <a href="index.html?contact=1">https://haco.studio/?contact=1</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="legal-section" id="datenschutz">
+    <h2>Datenschutzerklärung</h2>
+    <div class="legal-card">
+      <div class="legal-block">
+        <h3>1. Verantwortlicher</h3>
+        <p>Verantwortlich für die Verarbeitung personenbezogener Daten ist:</p>
+        <p>Hacer Aydemir<br>
+          Levetzowstraße 19a<br>
+          10555 Berlin<br>
+          Deutschland</p>
+        <p>E-Mail: <a href="mailto:hallo@haco.studio">hallo@haco.studio</a></p>
+      </div>
+
+      <div class="legal-block">
+        <h3>2. Hosting und Aufruf der Website</h3>
+        <p>Diese Website wird über GitHub Pages bereitgestellt.</p>
+        <p>Beim Aufruf werden technisch erforderliche Verbindungsdaten an GitHub übermittelt, insbesondere Ihre IP-Adresse. GitHub protokolliert und speichert Besucher-IP-Adressen zu Sicherheitszwecken.</p>
+        <p>Die Nutzung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Mein berechtigtes Interesse besteht in der sicheren und zuverlässigen Bereitstellung der Website.</p>
+        <p>GitHub nennt in seiner Datenschutzerklärung GitHub B.V., Prins Bernhardplein 200, 1097 JB Amsterdam, Niederlande, und GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA.</p>
+        <p>GitHub verarbeitet Daten auch in den USA und weiteren Ländern. Für internationale Übermittlungen nennt der Anbieter insbesondere das EU-US Data Privacy Framework und EU-Standardvertragsklauseln, soweit jeweils anwendbar.</p>
+        <p>Eine konkrete Aufbewahrungsfrist speziell für Besucher-IP-Protokolle von GitHub Pages wird in den geprüften öffentlichen Unterlagen nicht angegeben. GitHub beschreibt die Aufbewahrung anhand des jeweiligen Verarbeitungszwecks und rechtlicher Anforderungen.</p>
+        <p>Weitere Informationen finden Sie in der <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub-Datenschutzerklärung</a>.</p>
+      </div>
+
+      <div class="legal-block">
+        <h3>3. Kontaktformular mit FormSubmit</h3>
+        <p>Für das Kontaktformular verwende ich FormSubmit, einen von Devro LABS angebotenen Dienst zur Weiterleitung von Formularnachrichten per E-Mail.</p>
+        <p>Beim Absenden werden Ihr Name, Ihre E-Mail-Adresse und Ihre Nachricht an FormSubmit übermittelt. Zusätzlich wird aus Ihrem Namen ein individueller E-Mail-Betreff erzeugt. Bei der Verbindung zum Dienst wird technisch bedingt auch Ihre IP-Adresse übermittelt.</p>
+        <p>FormSubmit leitet die Anfrage an <a href="mailto:hallo@haco.studio">hallo@haco.studio</a> weiter. Nach seiner Dokumentation speichert der Dienst Formulareingänge für 30 Tage im Formulararchiv.</p>
+        <p>Ich verarbeite Ihre Angaben zur Bearbeitung und Beantwortung Ihrer Anfrage. Bei Anfragen zur Vorbereitung oder Durchführung eines Vertrags mit Ihnen ist die Rechtsgrundlage Art. 6 Abs. 1 lit. b DSGVO. Bei sonstigen Anfragen ist die Rechtsgrundlage Art. 6 Abs. 1 lit. f DSGVO. Mein berechtigtes Interesse besteht in der Bearbeitung eingehender Anfragen.</p>
+        <p>Die Kontaktaufnahme ist freiwillig. Ohne die als erforderlich gekennzeichneten Angaben kann das Formular nicht abgesendet werden.</p>
+        <p>Weitere Informationen:<br>
+          <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noopener">FormSubmit-Datenschutzhinweise</a> und <a href="https://formsubmit.co/documentation" target="_blank" rel="noopener">FormSubmit-Dokumentation</a>.
+        </p>
+      </div>
+
+      <div class="legal-block">
+        <h3>4. E-Mail-Kommunikation</h3>
+        <p>Wenn Sie mir direkt eine E-Mail senden, verarbeite ich Ihre E-Mail-Adresse, den Inhalt Ihrer Nachricht und weitere von Ihnen übermittelte Angaben zur Bearbeitung Ihrer Anfrage. Es gelten die im vorstehenden Abschnitt genannten Zwecke und Rechtsgrundlagen.</p>
+        <p>Für den Empfang und die Speicherung von E-Mails nutze ich Private Email von Namecheap, Inc., 4600 East Washington Street, Suite 300, Phoenix, AZ 85034, USA. Dies betrifft auch Nachrichten, die über FormSubmit weitergeleitet werden.</p>
+        <p>Nach Anbieterangaben befinden sich die Private-Email-Server in Phoenix, USA. Für entsprechende Übermittlungen sieht der geltende Auftragsverarbeitungsvertrag EU-Standardvertragsklauseln vor. Diese sind über die veröffentlichten Vertragsbedingungen einsehbar.</p>
+        <p>Weitere Informationen:<br>
+          <a href="https://www.namecheap.com/legal/general/privacy-policy/" target="_blank" rel="noopener">Namecheap-Datenschutzerklärung</a> und <a href="https://www.namecheap.com/legal/universal/data-processing-addendum/" target="_blank" rel="noopener">Namecheap-Vertrag zur Auftragsverarbeitung</a>.
+        </p>
+      </div>
+
+      <div class="legal-block">
+        <h3>5. Speicherung von Kontaktanfragen</h3>
+        <p>Ich speichere eingegangene Nachrichten so lange, wie dies zur Bearbeitung Ihrer Anfrage und gegebenenfalls zur anschließenden Vertragsabwicklung erforderlich ist.</p>
+        <p>Anschließend lösche ich die Nachrichten, sofern keine gesetzlichen Aufbewahrungspflichten oder eine erforderliche Speicherung zur Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen entgegenstehen.</p>
+        <p>Diese Löschkriterien betreffen die von mir verwalteten Nachrichten. Die Speicherung im Formulararchiv von FormSubmit ist davon getrennt.</p>
+      </div>
+
+      <div class="legal-block">
+        <h3>6. Lokale Ressourcen und Analyse</h3>
+        <p>Schriften, Bilder und Icons werden lokal bereitgestellt. Auf dieser Website sind keine Analyse- oder Werbetrackingwerkzeuge eingebunden.</p>
+        <p>Die nachfolgend beschriebene Auswertung durch Instagram Insights betrifft mein Instagram-Profil und erfolgt nicht als eingebundenes Analysewerkzeug auf dieser Website.</p>
+      </div>
+
+      <div class="legal-block">
+        <h3>7. Social-Media-Profile</h3>
+        <p>Auf der Website sind meine Profile bei Instagram, LinkedIn und Behance verlinkt. Die Links laden beim gewöhnlichen Seitenaufruf keine eingebetteten Inhalte dieser Plattformen. Wenn Sie einen Link anklicken, verlassen Sie diese Website.</p>
+        <p>Die Plattformbetreiber verarbeiten Daten nach ihren eigenen Datenschutzbedingungen. Dazu können insbesondere technische Verbindungsdaten, Nutzungsinformationen und bei angemeldeten Personen Kontodaten gehören. Abhängig vom Anbieter können Daten auch außerhalb des Europäischen Wirtschaftsraums verarbeitet werden.</p>
+        <p>Weitere Informationen:</p>
+        <ul>
+          <li><a href="https://privacycenter.instagram.com/policy/" target="_blank" rel="noopener">Instagram-Datenschutzhinweise</a></li>
+          <li><a href="https://www.linkedin.com/legal/privacy-policy" target="_blank" rel="noopener">LinkedIn-Datenschutzhinweise</a></li>
+          <li><a href="https://www.adobe.com/privacy/policy.html" target="_blank" rel="noopener">Adobe-Datenschutzhinweise für Behance</a></li>
+        </ul>
+        <p>Wenn Sie auf diesen Plattformen mit mir kommunizieren oder mit meinen Beiträgen interagieren, verarbeite ich die für mich sichtbaren Informationen, etwa Ihren Profilnamen, Kommentare und Nachrichten. Dies dient der Darstellung meiner Arbeiten und Dienstleistungen sowie der Kommunikation mit interessierten Personen.</p>
+        <p>Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Mein berechtigtes Interesse besteht in der beruflichen Außendarstellung und Kommunikation. Bei vertragsbezogenen Anfragen ist Art. 6 Abs. 1 lit. b DSGVO die Rechtsgrundlage.</p>
+        <p>Ich verwende die Informationen so lange, wie dies für den jeweiligen Zweck erforderlich ist, sofern keine gesetzlichen Aufbewahrungspflichten oder Gründe zur Rechtsverfolgung entgegenstehen. Auf die darüber hinausgehende Speicherung durch die Plattformbetreiber habe ich keinen vollständigen Einfluss.</p>
+      </div>
+
+      <div class="legal-block">
+        <h3>8. Instagram Insights</h3>
+        <p>Für mein Instagram-Profil nutze ich Instagram Insights. Instagram wird für Nutzerinnen und Nutzer im Europäischen Wirtschaftsraum von Meta Platforms Ireland Limited, Merrion Road, Dublin 4, D04 X2K5, Irland, angeboten.</p>
+        <p>Insights stellt mir zusammengefasste Statistiken über die Nutzung meines Profils und meiner Inhalte zur Verfügung. Dazu gehören beispielsweise Reichweite, Aufrufe, Interaktionen und – soweit verfügbar – zusammengefasste Angaben zur Zielgruppe. Diese Statistiken ermöglichen mir grundsätzlich keine Identifizierung einzelner Personen. Davon zu unterscheiden sind unmittelbar sichtbare Interaktionen wie Kommentare, Likes oder Nachrichten.</p>
+        <p>Ich verwende die Statistiken, um die Reichweite meiner Arbeiten zu verstehen und meine Inhalte an den Interessen meiner Zielgruppe auszurichten. Rechtsgrundlage für meine Nutzung ist Art. 6 Abs. 1 lit. f DSGVO. Mein berechtigtes Interesse besteht in der Verbesserung meiner beruflichen Außendarstellung.</p>
+        <p>Die Statistiken beruhen auf Daten, die Meta bei der Nutzung von Instagram verarbeitet. Dass ich zusammengefasste Ergebnisse erhalte, bedeutet nicht, dass Meta ausschließlich anonyme Daten verarbeitet. Auf die zugrunde liegenden personenbezogenen Daten und deren Speicherfristen habe ich keinen vollständigen Zugriff.</p>
+        <p>Informationen zur Verarbeitung durch Meta, zu Speicherbedingungen, möglichen internationalen Datenübermittlungen und Ihren Datenschutzrechten finden Sie in der <a href="https://privacycenter.instagram.com/policy/" target="_blank" rel="noopener">Instagram-Datenschutzerklärung</a>.</p>
+        <p>Bei Fragen zu meiner Nutzung der Statistiken können Sie sich an <a href="mailto:hallo@haco.studio">hallo@haco.studio</a> wenden. Rechte hinsichtlich der von Meta verwalteten Daten können Sie insbesondere über die in der Instagram-Datenschutzerklärung genannten Kontaktmöglichkeiten geltend machen.</p>
+      </div>
+
+      <div class="legal-block">
+        <h3>9. Ihre Rechte</h3>
+        <p>Sie haben unter den gesetzlichen Voraussetzungen das Recht auf:</p>
+        <ul>
+          <li>Auskunft gemäß Art. 15 DSGVO.</li>
+          <li>Berichtigung gemäß Art. 16 DSGVO.</li>
+          <li>Löschung gemäß Art. 17 DSGVO.</li>
+          <li>Einschränkung der Verarbeitung gemäß Art. 18 DSGVO.</li>
+          <li>Datenübertragbarkeit gemäß Art. 20 DSGVO.</li>
+        </ul>
+        <p>Soweit eine Verarbeitung auf Ihrer Einwilligung beruht, können Sie diese jederzeit mit Wirkung für die Zukunft widerrufen. Die Rechtmäßigkeit der bisherigen Verarbeitung bleibt unberührt.</p>
+        <p>Für Datenschutzanfragen erreichen Sie mich unter <a href="mailto:hallo@haco.studio">hallo@haco.studio</a>.</p>
+      </div>
+
+      <div class="legal-block">
+        <h3>10. Widerspruchsrecht</h3>
+        <p>Soweit ich Daten auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO verarbeite, können Sie aus Gründen Ihrer besonderen Situation jederzeit Widerspruch einlegen.</p>
+        <p>Ich verarbeite die betreffenden Daten dann nicht weiter, sofern ich keine zwingenden schutzwürdigen Gründe nachweisen kann, die Ihre Interessen, Rechte und Freiheiten überwiegen, oder die Verarbeitung der Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen dient.</p>
+      </div>
+
+      <div class="legal-block">
+        <h3>11. Beschwerderecht</h3>
+        <p>Sie haben das Recht, sich bei einer Datenschutzaufsichtsbehörde zu beschweren, insbesondere an Ihrem gewöhnlichen Aufenthaltsort, Ihrem Arbeitsplatz oder am Ort des mutmaßlichen Verstoßes.</p>
+        <p>Für private Anbieter in Berlin ist grundsätzlich die <a href="https://www.datenschutz-berlin.de/" target="_blank" rel="noopener">Berliner Beauftragte für Datenschutz und Informationsfreiheit</a> zuständig.</p>
+      </div>
+
+      <div class="legal-block">
+        <h3>12. Automatisierte Entscheidungen</h3>
+        <p>Eine automatisierte Entscheidungsfindung einschließlich Profiling im Sinne von Art. 22 DSGVO findet durch mich nicht statt.</p>
+      </div>
+
+      <p class="review-note">Stand: 09.10.2026</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© 2026 Hacer Aydemir · Berlin, Deutschland</p>
+  <a href="index.html" class="footer-link">Zurueck zu haco.studio</a>
+</footer>
+</body>
+</html>

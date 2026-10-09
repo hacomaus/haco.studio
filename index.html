@@ -46,7 +46,7 @@
       ],
       "sameAs": [
         "https://www.linkedin.com/in/haco/",
-        "https://www.behance.net/haceraydemir",
+        "https://www.behance.net/haco_studio",
         "https://www.instagram.com"
       ]
     },
@@ -853,6 +853,12 @@
     border-color: var(--violet);
     box-shadow: 0 0 0 3px rgba(173,129,253,.18);
   }
+  .contact-privacy-note {
+    font-size: .82rem;
+    line-height: 1.5;
+    opacity: .62;
+  }
+  .contact-privacy-note a { color: var(--ink); }
   .contact-form-send {
     justify-self: start;
     border: 1.5px solid var(--ink);
@@ -1167,6 +1173,7 @@
         <label for="contact-message">Nachricht</label>
         <textarea id="contact-message" name="message" required></textarea>
       </div>
+      <p class="contact-privacy-note">Informationen zur Verarbeitung deiner Angaben findest du im <a href="impressum.html#datenschutz">Datenschutz</a>.</p>
       <button class="contact-form-send" type="submit">Senden</button>
       <p class="contact-form-status" id="contact-form-status" role="status" aria-live="polite"></p>
     </form>
@@ -1364,7 +1371,7 @@
     <div class="social-row">
       <a href="https://www.instagram.com" target="_blank" rel="noopener" class="social-btn">Instagram</a>
       <a href="https://www.linkedin.com/in/haco/" target="_blank" rel="noopener" class="social-btn">LinkedIn</a>
-      <a href="https://www.behance.net/haceraydemir" target="_blank" rel="noopener" class="social-btn">Behance</a>
+      <a href="https://www.behance.net/haco_studio" target="_blank" rel="noopener" class="social-btn">Behance</a>
     </div>
   </div>
 </section>
@@ -1382,6 +1389,7 @@
   </div>
   <div class="footer-info">
     <p>© 2026 Hacer Aydemir · Berlin, Deutschland</p>
+    <a href="impressum.html">Impressum &amp; Datenschutz</a>
   </div>
 </footer>
 
