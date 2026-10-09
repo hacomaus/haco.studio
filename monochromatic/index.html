@@ -125,8 +125,9 @@
     --space-section-top: 3rem;
     --space-card-pad: 1.4rem;
     --space-card-pad-compact: 1rem;
-    --text-label-sm: 0.72rem;
-    --text-label-xs: 0.68rem;
+    --min-text-size: calc(.56rem + 2pt);
+    --text-label-sm: var(--min-text-size);
+    --text-label-xs: var(--min-text-size);
     --space-grid-desktop: 2rem;
     --space-grid-tablet: 1.5rem;
     --space-grid-mobile: 1rem;
@@ -480,7 +481,7 @@
   .branding-palette:not(.branding-palette--app) > span { height: 34px; display: block; }
   .branding-hex {
     font-family: 'Space Mono', monospace;
-    font-size: .62rem;
+    font-size: var(--min-text-size);
     line-height: 1.6;
     color: #2d3040;
   }
@@ -670,7 +671,7 @@
     align-items: center;
     gap: .55rem;
     font-family: 'Space Mono', monospace;
-    font-size: .72rem;
+    font-size: var(--min-text-size);
     letter-spacing: .08em;
     text-transform: uppercase;
     opacity: .82;
@@ -796,7 +797,7 @@
   }
 
   @media (max-width: 560px) {
-    .tag { font-size: 0.66rem; }
+    .tag { font-size: var(--min-text-size); }
   }
 
   @media (max-width: 520px) {

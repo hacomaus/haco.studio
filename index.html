@@ -138,6 +138,8 @@
     --cream:  #F5F5F0;
     --ink:    #111111;
     --page-gutter: 60px;
+    --nav-pill-pad-y: .42rem;
+    --nav-pill-pad-x: .85rem;
     --section-pad-y: 7rem;
     --section-pad-y-mobile: 5rem;
     --space-grid-lg: 2.5rem;
@@ -146,8 +148,10 @@
     --space-panel-y: 2.5rem;
     --space-overlay-x: 1.4rem;
     --space-overlay-y: 1.2rem;
-    --text-label-xs: .68rem;
-    --text-label-sm: .72rem;
+    --min-text-size: calc(.56rem + 2pt);
+    --nav-pill-text-size: var(--min-text-size);
+    --text-label-xs: var(--min-text-size);
+    --text-label-sm: var(--min-text-size);
     --text-label-md: .75rem;
     --radius-pill: 999px;
     --radius-sm: 10px;
@@ -211,20 +215,64 @@
   .nav-logo svg { color: var(--ink); transition: color .2s; }
   .nav-logo:hover svg { color: var(--violet); }
   .nav-links { display: flex; gap: var(--space-grid-lg); list-style: none; }
+  .nav-item-has-submenu { position: relative; }
+  .nav-submenu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    display: grid;
+    gap: .7rem;
+    width: max-content;
+    min-width: 0;
+    padding: .7rem 0 0;
+    list-style: none;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -.35rem);
+    transition: opacity .2s, transform .2s;
+  }
+  .nav-item-has-submenu:hover .nav-submenu,
+  .nav-item-has-submenu:focus-within .nav-submenu {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, 0);
+  }
+  .nav-links .nav-submenu a {
+    display: block;
+    width: max-content;
+    justify-self: start;
+    padding: var(--nav-pill-pad-y) var(--nav-pill-pad-x);
+    border: 1.5px solid var(--violet);
+    border-radius: var(--radius-pill);
+    background: var(--cream);
+    color: var(--violet);
+    text-align: center;
+    white-space: nowrap;
+    transition: background .2s, color .2s;
+  }
+  .nav-links .nav-submenu a::after { display: none; }
+  .nav-links .nav-submenu a:hover {
+    background: var(--violet);
+    color: #fff;
+  }
   .nav-links a {
-    font-family: 'Space Mono', monospace; font-size: var(--text-label-xs);
-    letter-spacing: .08em; text-transform: uppercase;
+    font-family: 'Space Mono', monospace; font-size: var(--nav-pill-text-size);
+    font-weight: 500; letter-spacing: .1em; text-transform: uppercase;
     line-height: 1;
     color: var(--ink); text-decoration: none; position: relative;
   }
   .nav-pill {
     display: inline-block;
     font-family: 'Space Mono', monospace;
-    font-size: var(--text-label-xs);
-    letter-spacing: .08em;
+    font-size: var(--nav-pill-text-size);
+    font-weight: 500;
+    letter-spacing: .1em;
     text-transform: uppercase;
     line-height: 1;
-    padding: .42rem .85rem;
+    padding: var(--nav-pill-pad-y) var(--nav-pill-pad-x);
     border: 1.5px solid;
     border-radius: var(--radius-pill);
     text-decoration: none;
@@ -235,6 +283,8 @@
     width: 100%; height: 2px; background: var(--violet); opacity: 0;
   }
   .nav-links a:hover::after { opacity: 1; }
+  .nav-item-has-submenu:hover > a::after,
+  .nav-item-has-submenu:focus-within > a::after { opacity: 1; }
   .nav-links a.nav-cta {
     border-color: var(--ink);
     transition: background .2s, color .2s, border-color .2s;
@@ -377,7 +427,7 @@
   .btn-primary {
     display: inline-flex; align-items: center; gap: .7rem;
     background: var(--ink); color: var(--lime);
-    font-family: 'Space Mono', monospace; font-size: .7rem;
+    font-family: 'Space Mono', monospace; font-size: var(--min-text-size);
     letter-spacing: .1em; text-transform: uppercase;
     padding: .95rem 2rem; text-decoration: none; cursor: none; border-radius: var(--radius-pill);
     transition: background .25s, transform .2s;
@@ -387,7 +437,7 @@
   .btn-primary:hover .arr { transform: translateX(4px); }
 
   .hero-scroll {
-    font-family: 'Space Mono', monospace; font-size: .58rem;
+    font-family: 'Space Mono', monospace; font-size: var(--min-text-size);
     letter-spacing: .2em; text-transform: uppercase; opacity: .3;
     display: flex; align-items: center; gap: .7rem;
   }
@@ -433,7 +483,7 @@
   .about-body p { font-size: .98rem; line-height: 1.85; font-weight: 300; opacity: .75; margin: 0; }
   .about-pills { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: 2.35rem; }
   .pill {
-    font-family: 'Space Mono', monospace; font-size: .64rem; font-weight: 500; line-height: 1;
+    font-family: 'Space Mono', monospace; font-size: var(--min-text-size); font-weight: 500; line-height: 1;
     letter-spacing: .1em; text-transform: uppercase;
     padding: .54rem 1.08rem; border: 1.3px solid; border-radius: 100px; transition: background .2s, color .2s, border-color .2s; cursor: none;
   }
@@ -656,7 +706,7 @@
     opacity: 0; transition: opacity .25s;
   }
   .wi:hover .wi-info { opacity: 1; }
-  .wi-cat { font-family: 'Space Mono', monospace; font-size: calc(.52rem + 2pt); letter-spacing: .15em; text-transform: uppercase; color: #fff; margin-bottom: .25rem; }
+  .wi-cat { font-family: 'Space Mono', monospace; font-size: var(--min-text-size); letter-spacing: .15em; text-transform: uppercase; color: #fff; margin-bottom: .25rem; }
   .wi-name { font-family: 'Syne', 'DM Sans', sans-serif; font-size: calc(1.1rem + 2pt); font-weight: 700; color: #fff; line-height: 1.2; margin-left: .25rem; }
   .wi-placeholder {
     display: none;
@@ -673,7 +723,7 @@
   .wi-placeholder-label {
     display: block;
     font-family: 'Space Mono', monospace;
-    font-size: .58rem;
+    font-size: var(--min-text-size);
     letter-spacing: .16em;
     text-transform: uppercase;
     opacity: .55;
@@ -762,7 +812,7 @@
   .contact-email:hover { color: var(--violet); border-color: var(--violet); }
   .social-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
   .social-btn {
-    font-family: 'Space Mono', monospace; font-size: .63rem; letter-spacing: .12em; text-transform: uppercase;
+    font-family: 'Space Mono', monospace; font-size: var(--min-text-size); letter-spacing: .12em; text-transform: uppercase;
     padding: .7rem 1.4rem; border: 1.5px solid var(--ink); color: var(--ink); text-decoration: none;
     transition: background .2s, color .2s, transform .2s; cursor: none; border-radius: var(--radius-pill);
   }
@@ -825,7 +875,7 @@
   }
   .contact-form label {
     font-family: 'Space Mono', monospace;
-    font-size: .62rem;
+    font-size: var(--min-text-size);
     letter-spacing: .1em;
     text-transform: uppercase;
     opacity: .75;
@@ -866,7 +916,7 @@
     background: var(--ink);
     color: var(--lime);
     font-family: 'Space Mono', monospace;
-    font-size: .7rem;
+    font-size: var(--min-text-size);
     letter-spacing: .1em;
     text-transform: uppercase;
     padding: .7rem 1.2rem;
@@ -900,14 +950,14 @@
     align-items: center;
     gap: .55rem;
     font-family: 'Space Mono', monospace;
-    font-size: .66rem;
+    font-size: var(--min-text-size);
     letter-spacing: .08em;
     text-transform: uppercase;
     opacity: .82;
   }
   .footer-logo svg { height: 28px; width: auto; display: block; color: var(--ink); opacity: .85; }
   .logo-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
-  .footer-info { font-family: 'Space Mono', monospace; font-size: .66rem; letter-spacing: .1em; opacity: .8; text-align: right; line-height: 1.4; white-space: nowrap; }
+  .footer-info { font-family: 'Space Mono', monospace; font-size: var(--min-text-size); letter-spacing: .1em; opacity: .8; text-align: right; line-height: 1.4; white-space: nowrap; }
 
   /* REVEAL */
   .reveal { opacity: 0; transform: translateY(32px); transition: opacity .6s ease, transform .6s ease; }
@@ -916,7 +966,7 @@
 
   @media (min-width: 961px) {
     .hero-picture-card:hover {
-      transform: translate(-3px, -3px) !important;
+      transform: none !important;
     }
     .contact-visual:hover {
       transform: translate(-3px, -3px);
@@ -973,18 +1023,44 @@
     nav.menu-open .nav-links { display: flex; }
     .nav-links a {
       display: block;
-      width: 100%;
+      width: max-content;
+      margin-inline: auto;
       text-align: center;
       border: 1.5px solid var(--ink);
       border-radius: var(--radius-pill);
-      font-size: var(--text-label-xs);
-      letter-spacing: .08em;
+      font-size: var(--nav-pill-text-size);
+      letter-spacing: .1em;
       line-height: 1;
       padding: .42rem .85rem;
       background: var(--cream);
     }
     .nav-links a::after { display: none; }
     .nav-links a.nav-cta { display: none; }
+    .nav-submenu {
+      position: static;
+      display: grid;
+      gap: .95rem;
+      width: max-content;
+      min-width: 0;
+      padding: .95rem 0 0;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      opacity: 1;
+      pointer-events: auto;
+      transform: none;
+      justify-self: start;
+    }
+    .nav-item-has-submenu {
+      align-self: center;
+      width: max-content;
+    }
+    .nav-item-has-submenu > a { margin-inline: auto; }
+    .nav-links .nav-submenu a {
+      text-align: center;
+      padding-left: .85rem;
+      justify-self: center;
+    }
     section { padding: var(--section-pad-y-mobile) var(--page-gutter); }
     #hero {
       min-height: auto;
@@ -1121,7 +1197,13 @@
     <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="main-menu" aria-label="Menue oeffnen">MENÜ</button>
   </div>
     <ul class="nav-links" id="main-menu">
-    <li><a href="#work">Arbeiten</a></li>
+    <li class="nav-item-has-submenu">
+      <a href="#work" aria-haspopup="true">Arbeiten</a>
+      <ul class="nav-submenu">
+        <li><a href="monochromatic/index.html">monochromatic</a></li>
+        <li><a href="#work-slash">s/ash Magazin</a></li>
+      </ul>
+    </li>
     <li><a href="#services">Leistungen</a></li>
     <li><a href="#process">Prozess</a></li>
     <li><a href="#" class="nav-cta nav-pill open-contact-modal-trigger" id="open-contact-modal">Kontakt</a></li>
@@ -1261,7 +1343,7 @@
         <h3 class="wi-name">Partopreno</h3>
       </div>
     </div>
-    <div class="wi wi-print">
+    <div class="wi wi-print" id="work-slash">
       <img src="assets/images/slash-magazin-cover.png" alt="s/ash Projektvorschau" loading="lazy" decoding="async" width="806" height="1680">
       <span class="wi-badge">Print</span>
       <div class="wi-info">
