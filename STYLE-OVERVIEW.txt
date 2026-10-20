@@ -1,0 +1,470 @@
+STYLE-ÜBERSICHT – haco.studio
+==============================
+
+Quelle
+------
+Diese Übersicht beschreibt die aktuell in index.html eingebetteten CSS-Regeln
+der Hauptwebsite. Die Website-Dateien wurden für diese Übersicht nicht verändert.
+
+
+1. DESIGN-SYSTEM
+----------------
+
+Farbpalette
+
+  --lime       #DEFF70   Leuchtendes Limettengrün, Akzente und CTA-Text
+  --lime-deep  #8AA033   Dunklere Lime-Variante
+  --lav        #CFB5FF   Helles Lavendel
+  --lav-deep   #7E5FAE   Dunklere Lavendel-Variante
+  --ice        #B8D8E0   Helles Eisblau
+  --ice-deep   #5E7F89   Dunklere Eisblau-Variante
+  --violet     #AD81FD   Violett, Links, Hover-Zustände und Highlights
+  --cream      #F5F5F0   Heller Seitenhintergrund
+  --ink        #111111   Fast schwarzer Text und dunkle Flächen
+
+Typografie
+
+  DM Sans
+    Fließtext, Formulare und allgemeine UI-Texte
+    Gewichte: 300, 400, 500
+
+  Space Mono
+    Navigation, Labels, Buttons, Metadaten und Footer
+    Gewichte: 400, 700
+
+  Syne
+    Headlines, Titel und typografische Akzente
+    Gewichte: 700, 800
+
+  Schriftdateien liegen unter assets/fonts/.
+  Alle Fonts verwenden font-display: swap.
+
+Layout- und Größenvariablen
+
+  Seitenabstand Desktop:          60px
+  Seitenabstand Mobile:           24px
+  Abschnittsabstand Desktop:     7rem
+  Abschnittsabstand Mobile:      5rem
+  Großes Grid-Gap:                2.5rem
+  Pill-Radius:                   999px
+  Kleiner Radius:                 10px
+  Mittlerer Radius:              16px
+  Großer Radius:                 24px
+  Kleinste Textgröße:            calc(.56rem + 2pt)
+
+
+2. GRUNDLAYOUT
+----------------
+
+  box-sizing: border-box für alle Elemente und Pseudo-Elemente
+  Standardabstände werden global auf 0 gesetzt
+  Smooth Scrolling auf der gesamten Seite
+  Horizontales Überlaufen wird verhindert
+  Hintergrund: --cream
+  Standardtextfarbe: --ink
+  Standardfont: DM Sans
+  Bilder, SVGs, Videos und Canvas bleiben maximal 100% breit
+  .sr-only versteckt Inhalte visuell, lässt sie aber für Screenreader zugänglich
+
+Die Seite verwendet einen benutzerdefinierten Cursor. Auf Touch-Geräten bzw.
+kleinen Viewports wird die mobile Navigation verwendet.
+
+
+3. VISUELLE EFFEKTE UND INTERAKTIONEN
+---------------------------------------
+
+Custom Cursor
+  #cursor
+    12px großer, limefarbener Kreis
+    Fixed position, pointer-events: none
+    Bei .big: 48px großer violetter Kreis
+    Weiche Größen- und Farbtransition
+
+Noise Overlay
+  body::before
+    Fixiertes, nicht interaktives SVG-Fraktalrauschen
+    Dezent über der gesamten Website
+    Opacity: .5
+
+Hover-Verhalten
+  Links erhalten violette Unterstreichungen oder violette Farbe.
+  Buttons wechseln überwiegend auf Violett oder Ink.
+  Karten bewegen sich leicht nach oben bzw. diagonal.
+  Transitions liegen typischerweise zwischen .2s und .28s.
+
+Animationen
+  heroFloat
+    Langsame Bewegung und Skalierung der farbigen Hero-Flächen
+  fadeUp
+    Einblenden von Inhalten von unten nach oben
+  heroCardIn
+    Einblenden der Hero-Bildkarte
+  ticker
+    Horizontales, kontinuierliches Laufband
+  reveal / reveal.on
+    Scroll-basiertes Einblenden von Inhalten
+
+Bei prefers-reduced-motion: reduce werden Scroll- und Bewegungsanimationen
+reduziert bzw. deaktiviert.
+
+
+4. NAVIGATION
+------------
+
+  nav
+    Fixed am oberen Rand
+    Flexbox mit Logo links und Navigation rechts
+    Seitenabstand: 60px
+    Z-Index: 100
+
+  nav.scrolled
+    Cream-Hintergrund und dezente untere Linie beim Scrollen
+
+  .nav-logo
+    SVG-Logo mit 34px Höhe
+    Hover-Farbe: Violett
+
+  .nav-links
+    Horizontales Flex-Layout
+    Space Mono, Großbuchstaben, starkes Letter-Spacing
+
+  .nav-submenu
+    Absolutes Untermenü
+    Initial unsichtbar
+    Sichtbar bei Hover oder focus-within
+    Untermenüeinträge als violette Pills
+
+  .nav-cta
+    Dunkle Outline-Pill
+    Hover: Ink-Hintergrund und Lime-Text
+
+  .nav-toggle
+    Auf Desktop verborgen
+    Auf kleineren Viewports als pillenförmiger MENÜ-Button sichtbar
+    Geöffneter Zustand: Ink-Hintergrund, Cream-Text
+
+
+5. HERO-BEREICH
+---------------
+
+  #hero
+    Mindestens 100vh hoch
+    CSS Grid mit Textbereich, Zwischenraum und Bildbereich
+    Zentrierte vertikale Ausrichtung
+    Überlauf wird verborgen
+
+  .hero-blobs / .blob
+    Große, weichgezeichnete, halbtransparente Farbflächen
+    Farben: Lime, Ice und Lavendel
+    Mix-blend-mode: multiply
+    Animierte, langsame Bewegung
+
+  .hero-content
+    Enthält Intro, Headline, Beschreibung und Actions
+
+  .hero-opening
+    Syne, sehr große responsive Schrift
+    Tightes Letter-Spacing
+    Hauptfarbe: Ink
+
+  .hero-sub
+    DM Sans
+    Responsive Schriftgröße
+    Maximalbreite ca. 510px
+    Hervorgehobene Textteile in kursivem Violett
+
+  .hero-picture-card
+    Weißer Bildrahmen mit 2px Ink-Border
+    Seitenverhältnis 9:11
+    Lavendel-Schatten nach rechts unten
+    Bild füllt den Rahmen mit object-fit: cover
+
+  .btn-primary
+    Ink-Hintergrund und Lime-Text
+    Pillenform
+    Hover: Violett und leichte Bewegung nach oben
+    Pfeil bewegt sich beim Hover nach rechts
+
+  .hero-scroll
+    Monospace-Label mit dezenter Deckkraft
+    Horizontale Linie als dekoratives Vorzeichen
+
+
+6. TICKER
+---------
+
+  .ticker-wrap
+    Volle Breite
+    Ink-Hintergrund
+    Kein Zeilenumbruch
+
+  .ticker-track
+    Horizontale Endlosanimation über 22 Sekunden
+
+  Ticker-Text
+    Space Mono
+    Uppercase
+    Lime
+    Trenner in Lavendel
+
+
+7. GEMEINSAME SEKTIONSSTYLES
+-----------------------------
+
+  section
+    Vertikaler Abstand: 7rem
+    Horizontaler Abstand: var(--page-gutter)
+
+  .section-label
+    Space Mono
+    Uppercase
+    Starkes Letter-Spacing
+    Dezente Deckkraft
+
+  .section-title
+    Syne, Gewicht 800
+    Responsive Größe: clamp(1.8rem, 4.2vw, 3.2rem)
+    Zeilenhöhe 1.05
+
+  .section-title em
+    Kursiv
+    Violett, in dunklen Sektionen Lime
+
+
+8. ABOUT-SEKTION
+----------------
+
+  #about
+    Ink-Hintergrund
+    Cream-Text
+    Zweispaltiges Grid auf großen Bildschirmen
+
+  .about-body
+    Maximale Breite: 680px
+    Fließtext mit großzügiger Zeilenhöhe
+    Textdeckkraft reduziert
+
+  .about-pills / .pill
+    Flexible Zeile von Kompetenz-Pills
+    Abwechselnde Farben nach Position:
+      1. Lime
+      2. Violett
+      3. Ice
+    Hover füllt die jeweilige Pill-Farbe
+
+  .about-cards / .acard
+    Karten-Grid mit vier Kennzahlen bzw. visuellen Karten
+    Cream, Lime, Violett und Ice als Flächenfarben
+    Leichte Rotationen pro Karte
+    Farbige Offset-Schatten
+    Hover richtet Karten gerade aus und hebt sie leicht an
+
+
+9. WORK-SEKTION
+---------------
+
+  .work-grid
+    Responsive Karten-Grid für Projekte
+    Desktop: mehrere Spalten
+    Tablet und Mobile: reduzierte Spaltenanzahl
+
+  .wi
+    Projektkarte mit Bild-/Medienbereich
+    Dezente Bewegung und Schatten beim Hover
+
+  .wi-placeholder
+    Platzhalterelemente werden in kleinen Viewports ausgeblendet
+
+  Projektbilder verwenden volle Kartenbreite und bleiben responsiv.
+
+
+10. SERVICES-SEKTION
+--------------------
+
+  Servicekarten (.scard)
+    Helle Karten mit Ink-Text
+    Farbiger, dekorativer Pseudo-Element-Akzent
+    Große, sehr dezente Nummerierung
+    Syne für Überschriften
+    DM Sans für Beschreibungstexte
+    Hover: leichte Bewegung nach oben und verstärkter Schatten
+
+  .scard-icon
+    Größeres Icon bzw. Emoji-Element oberhalb der Überschrift
+
+
+11. PROCESS-SEKTION
+-------------------
+
+  #process
+    Ink-Hintergrund
+    Cream-Text
+    Akzente in Lime, Ice, Lavendel und Violett
+
+  .process-track
+    Vier gleich breite Prozessschritte
+    Horizontale Verlaufslinie hinter den Punkten
+
+  .pstep-dot
+    Runde Markierung pro Prozessschritt
+    Jeder Schritt verwendet eine eigene Akzentfarbe
+
+  .pstep-num
+    Space Mono, klein, starkes Letter-Spacing
+    Dezente Deckkraft
+
+  .pstep h4
+    Syne, mittlere Überschrift
+
+  .pstep p
+    Kleine, zurückhaltende Beschreibung mit großzügiger Zeilenhöhe
+
+
+12. CONTACT-SEKTION
+-------------------
+
+  #contact
+    Cream-Hintergrund
+    Zentrierter Inhalt
+    Überlauf wird verborgen
+
+  .contact-visual
+    Maximale Breite: 420px
+    Ink-Rahmen
+    Lavendel-Offset-Schatten
+    Auf Desktop Hover-Bewegung nach links oben
+
+  .contact-email
+    Syne, responsive Größe
+    Lime-Unterstreichung
+    Hover wechselt auf Violett
+
+  .social-row
+    Zentrierte, umbrechbare Button-Reihe
+
+  .social-btn
+    Monospace, uppercase
+    Ink-Border und Pillenform
+    Hover: Ink-Hintergrund, Lime-Text, leichte Bewegung nach oben
+
+
+13. KONTAKTFORMULAR / MODAL
+---------------------------
+
+  .contact-modal
+    Fixed über dem gesamten Viewport
+    Zentrierter Dialog
+    Dunkler, transparenter Hintergrund mit Blur
+    Initial unsichtbar und nicht anklickbar
+
+  .contact-modal.open
+    Sichtbar
+    pointer-events aktiviert
+
+  .contact-modal-dialog
+    Cream-Hintergrund
+    2px Ink-Rahmen
+    20px Radius
+    Tiefer Schatten
+    Maximale Breite: 560px
+
+  .contact-form
+    Grid mit gleichmäßigen Abständen
+
+  Eingabefelder
+    Weißer Hintergrund
+    Ink-Rahmen
+    12px Radius
+    Violetter Fokusrahmen mit weichem Außenring
+
+  .contact-form-send
+    Ink-Hintergrund, Lime-Text
+    Hover: Violett und leichte Bewegung
+
+  .contact-form-status
+    Standardmäßig verborgen
+    Bei .show sichtbar
+    Icefarbener Hinweisblock
+
+
+14. FOOTER
+----------
+
+  footer
+    Cream-Hintergrund
+    Flexbox mit Inhalt links und rechts
+    Space Mono und Uppercase
+
+  .footer-credit
+    Logo und Credit nebeneinander
+    Dezente Deckkraft
+
+  .footer-info
+    Rechtsbündige Monospace-Informationen
+    Kein Zeilenumbruch auf Desktop
+
+
+15. RESPONSIVE VERHALTEN
+------------------------
+
+  Bis 1460px
+    About-Bereich wechselt auf einspaltiges Layout.
+    About-Karten werden in einer breiteren Reihe angeordnet.
+    Hero-Bild wird unter dem Hero-Text gestapelt.
+    Work-Grid reduziert die Spaltenanzahl.
+
+  1460px bis 961px
+    Hero-Text wird vertikal zentriert.
+    Headline und Subheadline werden angepasst.
+
+  Bis 1200px
+    Hero- und Kartenabstände werden reduziert.
+    Layoutbreiten werden an den Viewport angepasst.
+
+  Bis 960px
+    Desktop-Navigation wird durch mobile Navigation ersetzt.
+    Hero und Inhaltsbereiche werden einspaltig.
+    Process-Schritte werden kompakter bzw. vertikal angeordnet.
+    Footer-Inhalte werden für kleinere Breiten angepasst.
+
+  Bis 720px
+    Seitenabstand: 24px.
+    Sections erhalten weniger vertikalen Abstand.
+    Headline wird deutlich größer relativ zur Viewportbreite.
+    Mobile Navigation nimmt den verfügbaren Platz ein.
+    Work-Grid wird einspaltig bzw. stark reduziert.
+    Footer wird vertikal angeordnet und zentriert.
+    Lange E-Mail-Adressen dürfen umbrechen.
+
+  Ab 1281px
+    Bestimmte Desktop-Hover-Effekte für Karten werden aktiviert.
+
+
+16. HTML-BEREICHE DER HAUPTSEITE
+--------------------------------
+
+  Navigation
+  Hero
+  Ticker
+  About
+  Work / Projekte
+  Services
+  Process / Arbeitsprozess
+  Contact
+  Kontaktformular-Modal
+  Footer
+
+
+17. KURZCHARAKTER DES DESIGNS
+-----------------------------
+
+  Editoriales Portfolio-Design mit:
+  - Cream- und Ink-Basis
+  - leuchtenden Lime-, Ice-, Lavendel- und Violett-Akzenten
+  - geometrischen Pills und Offset-Schatten
+  - großen Syne-Headlines
+  - technischem Space-Mono-Microcopy
+  - animierten Farbflächen
+  - sichtbaren, aber kontrollierten Hover-Interaktionen
+  - responsivem Mobile-first-Verhalten
+  - reduzierter Bewegung bei entsprechender Systemeinstellung
