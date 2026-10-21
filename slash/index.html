@@ -109,6 +109,8 @@ header span,.controls{font-family:var(--ui-font);font-weight:400}
 .controls #start:hover:not(:disabled){background:var(--ink);color:var(--lime)}
 .controls button:focus-visible,.controls select:focus-visible{outline-color:var(--violet);background:var(--cream);color:var(--ink)}
 .hint{font-family:"DM Sans",sans-serif;font-size:14px;letter-spacing:0;color:rgba(17,17,17,.65)}
+.mobile-break{display:inline}
+.mobile-break br{display:none}
 
 /* Reserve a dedicated arrow area inside the page selector pill. */
 .controls select{appearance:none;-webkit-appearance:none;padding-right:46px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath d='m4 6 4 4 4-4' fill='none' stroke='%23111111' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:16px 16px;background-position:right 18px center}
@@ -138,11 +140,11 @@ main{max-width:1200px;margin:0 auto;padding:2rem 60px 4rem;display:flex;flex-dir
 .controls{align-self:center}
 .hint{align-self:center}
 footer{border-top:1px solid rgba(24,24,24,.18);margin-top:1rem;padding-top:1rem;color:#53586f;font-size:.92rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
-.footer-credit{display:inline-flex;align-items:center;gap:.55rem;font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
-.footer-logo img{display:block;width:74px;height:auto}
-.footer-meta{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
-.footer-meta a{color:inherit;text-decoration:none}
-.footer-meta a:hover,.footer-meta a:focus-visible{text-decoration:underline;color:var(--ink)}
+.footer-credit{display:inline-flex;align-items:center;gap:.55rem;font-family:"Space Mono",monospace;font-size:calc(.56rem + 2pt);letter-spacing:.08em;text-transform:uppercase;opacity:.82;color:var(--ink)}
+.footer-logo img{height:24px;width:auto;display:block;opacity:.85}
+.footer-meta{display:flex;flex-direction:column;align-items:flex-end;gap:.35rem}
+.footer-email{display:inline-block;font-family:"Syne","DM Sans",sans-serif;font-size:1.05rem;font-weight:700;color:var(--ink);text-decoration:none;border-bottom:2px solid #DEFF70;padding-bottom:.12rem;transition:color .2s,border-color .2s}
+.footer-email:hover{color:var(--violet);border-color:var(--violet)}
 @media(max-width:720px){
   .topbar-inner{grid-template-columns:1fr auto;padding:.7rem 16px}
   .brand{display:flex;align-items:center;gap:.75rem}
@@ -155,8 +157,10 @@ footer{border-top:1px solid rgba(24,24,24,.18);margin-top:1rem;padding-top:1rem;
   .nav-pill-icon{display:block}
   main{padding:1.5rem 16px 3rem}
   .stage,.magazine-closed .stage{height:66vw;min-height:260px}
-  footer{flex-direction:column;gap:.8rem;text-align:center;padding:1.2rem 0 .7rem}
-  .footer-meta{justify-content:center}
+  footer{flex-direction:column;align-items:center;gap:.45rem;text-align:center;padding:1rem 0 .55rem}
+  .footer-meta{align-items:center}
+  .mobile-break br{display:block}
+  .hint{line-height:1.1}
 }
 @media(max-height:500px){
   .topbar-inner{padding:.5rem 16px}
@@ -175,7 +179,7 @@ footer{border-top:1px solid rgba(24,24,24,.18);margin-top:1rem;padding-top:1rem;
 </style>
 <body class="magazine-closed"><header class="topbar"><div class="topbar-inner"><div class="brand"><img class="brand-logo" src="assets/front-wordmark.png" alt="slash"><span class="brand-meta">BERLIN / BOGOTÁ · FEBRUAR 2026</span></div><div class="topbar-actions"><a class="nav-contact nav-pill" href="../index.html?contact=1" aria-label="Kontakt"><svg class="nav-pill-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M3 6.75A1.75 1.75 0 0 1 4.75 5h14.5A1.75 1.75 0 0 1 21 6.75v10.5A1.75 1.75 0 0 1 19.25 19H4.75A1.75 1.75 0 0 1 3 17.25V6.75Z" stroke="currentColor" stroke-width="1.7"/><path d="m4.5 7.5 7.05 5.25a.75.75 0 0 0 .9 0L19.5 7.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-pill-label">Kontakt</span></a><a class="home-link nav-pill" href="../index.html" aria-label="Startseite"><svg class="nav-pill-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M4 10.5 12 4l8 6.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 9.8v8.2a1 1 0 0 0 1 1H11v-4.2h2V19h3.5a1 1 0 0 0 1-1V9.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-pill-label">Startseite</span></a></div></div></header>
 <main><div class="stage"><button class="closed-cover" id="closedCover" aria-label="Magazin zur Mitte öffnen"><img class="front-wordmark" src="assets/front-wordmark.png" alt="slash – geschlossene Vorderseite im A4-Hochformat"></button><div class="book closed" id="book"><div class="spread"><img class="page" id="leftPage" alt=""><img class="page" id="rightPage" alt=""></div><div class="spine"></div><button class="flap left" id="leftFlap" aria-label="Berlin-Lasche öffnen" aria-expanded="false"><span class="face"><b>Berlin</b></span><span class="face back"><img src="assets/flap-left.jpg" alt="Berlin Stadtinformationen"></span></button><button class="flap right" id="rightFlap" aria-label="Bogotá-Lasche öffnen" aria-expanded="false"><span class="face"><b>Bogotá</b></span><span class="face back"><img src="assets/flap-right.jpg" alt="Bogotá Stadtinformationen"></span></button><button class="cover" id="cover" aria-label="Magazin öffnen"><img src="assets/cover.jpg" alt="slash Umschlag"></button></div><div class="spine-overlay" id="spineOverlay" aria-hidden="true"></div></div>
-<div class="controls"><button id="start">Magazin öffnen</button><button id="reverse">Rückseite ansehen</button><button id="prev" disabled>Zurück</button><select id="pages" aria-label="Doppelseite auswählen"></select><button id="next" disabled>Weiter</button><button id="middle">Zur Mitte</button></div><p class="hint" id="hint" aria-live="polite">Den Umschlag anklicken, um das Magazin zu öffnen.</p><footer><div class="footer-credit"><span>Designed &amp; coded by</span><span class="footer-logo"><img src="../assets/icons/logo-haco-punkt.svg" alt="haco."></span></div><div class="footer-meta"><a href="mailto:hallo@haco.studio">hallo@haco.studio</a></div></footer></main>
+<div class="controls"><button id="start">Magazin öffnen</button><button id="reverse">Rückseite ansehen</button><button id="prev" disabled>Zurück</button><select id="pages" aria-label="Doppelseite auswählen"></select><button id="next" disabled>Weiter</button><button id="middle">Zur Mitte</button></div><p class="hint" id="hint" aria-live="polite">Den Umschlag anklicken,<span class="mobile-break"><br></span> um das Magazin zu öffnen.</p><footer><div class="footer-credit"><span>Designed &amp; coded by</span><span class="footer-logo"><img src="../assets/icons/logo-haco-punkt.svg" alt="haco."></span></div><div class="footer-meta"><a href="mailto:hallo@haco.studio" class="footer-email">hallo@haco.studio</a></div></footer></main>
 <script>
 const $=id=>document.getElementById(id),book=$('book');let spread=34,opened=false,busy=false,rear=false;const src=n=>n===0?'assets/inside-left.jpg':n===69?'assets/inside-right.jpg':`assets/page-${String(n).padStart(2,'0')}.jpg`;
 const groups=[0,...Array.from({length:33},(_,i)=>(i+1)*2),68];for(const n of groups){const option=new Option(n===0?'Umschlag innen / Seite 1':n===68?'Seite 68 / Umschlag innen':`Seiten ${n} / ${n+1}`,n);$('pages').add(option)}
@@ -199,7 +203,7 @@ function fitMagazine(){
  const scale=1;
  shadow.style.transform=`translate(-50%,-50%) scale(${scale})`;
 }
-function render(){for(const [id,n] of [['leftPage',spread],['rightPage',spread+1]]){const img=$(id);img.style.visibility=n<0||n>69?'hidden':'visible';if(n>=0&&n<=69){img.src=src(n);img.alt=n===0?'Umschlaginnenseite links':n===69?'Umschlaginnenseite rechts':`Magazinseite ${n}`}}$('reverse').hidden=opened;$('pages').disabled=!opened||busy;$('middle').disabled=busy;$('start').disabled=busy;$('pages').value=spread;$('prev').disabled=!opened||spread===0||busy;$('next').disabled=!opened||spread===68||busy;const center=opened&&spread===34;for(const id of ['leftFlap','rightFlap']){$(id).style.display=opened?'block':'none';$(id).disabled=busy;}book.classList.toggle('wings',opened&&($('leftFlap').classList.contains('open')||$('rightFlap').classList.contains('open')));fitMagazine();$('hint').textContent=!opened?'Den Umschlag anklicken, um das Magazin zu öffnen.':center?'Berlin und Bogotá anklicken, um die Laschen aufzuklappen.':'Links klicken: zurück. Rechts klicken: weiter. Auch mit Pfeiltasten.'}
+function render(){for(const [id,n] of [['leftPage',spread],['rightPage',spread+1]]){const img=$(id);img.style.visibility=n<0||n>69?'hidden':'visible';if(n>=0&&n<=69){img.src=src(n);img.alt=n===0?'Umschlaginnenseite links':n===69?'Umschlaginnenseite rechts':`Magazinseite ${n}`}}$('reverse').hidden=opened;$('pages').disabled=!opened||busy;$('middle').disabled=busy;$('start').disabled=busy;$('pages').value=spread;$('prev').disabled=!opened||spread===0||busy;$('next').disabled=!opened||spread===68||busy;const center=opened&&spread===34;for(const id of ['leftFlap','rightFlap']){$(id).style.display=opened?'block':'none';$(id).disabled=busy;}book.classList.toggle('wings',opened&&($('leftFlap').classList.contains('open')||$('rightFlap').classList.contains('open')));fitMagazine();$('hint').innerHTML=!opened?'Den Umschlag anklicken,<span class="mobile-break"><br></span> um das Magazin zu öffnen.':center?'Berlin und Bogotá anklicken, um die Laschen aufzuklappen.':'Links klicken: zurück. Rechts klicken: weiter. Auch mit Pfeiltasten.'}
 function openBook(){spread=34;for(const id of ['leftFlap','rightFlap']){ $(id).classList.remove('open');$(id).setAttribute('aria-expanded','false');}rear=false;$('cover').classList.remove('rear');$('cover').querySelector('img').src='assets/cover.jpg';$('reverse').textContent='Rückseite ansehen';document.body.classList.remove('magazine-closed');opened=true;book.classList.remove('closed');$('cover').classList.add('open');$('start').textContent='Schließen';render()}
 $('closedCover').onclick=openBook;$('cover').onclick=openBook;$('start').onclick=()=>{if(!opened){openBook();return}opened=false;rear=false;document.body.classList.add('magazine-closed');$('cover').classList.remove('rear');$('cover').querySelector('img').src='assets/cover.jpg';$('reverse').textContent='Rückseite ansehen';spread=34;book.classList.add('closed');$('cover').classList.remove('open');for(const id of ['leftFlap','rightFlap'])$(id).classList.remove('open');$('start').textContent='Magazin öffnen';render()};
 $('reverse').onclick=()=>{rear=!rear;$('cover').classList.toggle('rear',rear);const img=$('cover').querySelector('img');img.src=rear?'assets/back-cover.jpg':'assets/cover.jpg';img.alt=rear?'slash Rückseite mit Bildlogo':'slash Vorderseite';$('reverse').textContent=rear?'Vorderseite ansehen':'Rückseite ansehen'};
