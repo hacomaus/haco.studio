@@ -1,12 +1,12 @@
 # slash – interaktiver Magazin-Prototyp
 
-`index.html` mit dem gesamten Ordner `assets` auf die Website übernehmen. Der Prototyp benötigt keine externen Bibliotheken oder Dienste. Für eine Einbettung kann die HTML-Datei in einem iframe angezeigt werden:
+Die Unterseite wird direkt unter `slash/index.html` aufgerufen und benötigt keine externen Bibliotheken oder Dienste. Für eine Einbettung kann die HTML-Datei in einem iframe angezeigt werden:
 
 ```html
-<iframe src="/slash-prototype/index.html" title="slash Magazin Berlin / Bogotá" style="width:100%;height:850px;border:0" loading="lazy"></iframe>
+<iframe src="/slash/index.html" title="slash Magazin Berlin / Bogotá" style="width:100%;height:850px;border:0" loading="lazy"></iframe>
 ```
 
-Enthalten: 68 Inhaltsseiten, animiertes Blättern, Seitenwahl, Einstieg in der Mitte (PDF-Seiten 34/35), unabhängig faltbare Laschen, Vergrößerung, Tastatur- und Wischbedienung.
+Enthalten: 68 Inhaltsseiten, animiertes Blättern, Seitenwahl, Einstieg in der Mitte (PDF-Seiten 34/35), unabhängig faltbare Laschen und Tastaturbedienung.
 
 Das Außengrün ist anhand des Referenzfotos angenähert (#b7e51b). Die Laschenform und die Positionen der Beschriftungen sind anhand der Druckdatei und des Fotos angenähert. Kein verbindlicher Farbproof. Die Innenflächen der Laschen stammen aus der Umschlag-PDF. Die Produktionsdateien bleiben unverändert.
 
