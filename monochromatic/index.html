@@ -212,9 +212,6 @@
     color: var(--ink);
     border-color: var(--ink);
   }
-  .topbar-actions .home-link {
-    display: none;
-  }
   .topbar-actions {
     justify-self: end;
     display: block;
@@ -261,24 +258,6 @@
     height: 1.15rem;
     display: none;
     flex: 0 0 auto;
-  }
-  .project-nav {
-    display: flex;
-    align-items: center;
-    gap: 2.5rem;
-    justify-self: center;
-  }
-  .project-nav a {
-    color: var(--ink);
-    font-family: 'Space Mono', monospace;
-    font-size: 12px;
-    letter-spacing: .08em;
-    text-decoration: none;
-    text-transform: uppercase;
-  }
-  .project-nav a:hover,
-  .project-nav a:focus-visible {
-    color: var(--violet);
   }
   .nav-pill-label {
     line-height: 1;
@@ -830,7 +809,7 @@
 
   /* Keep project navigation buttons consistent with the slash subpage. */
   .topbar-actions .nav-pill {
-    font-size: 12px;
+    font-size: calc(.56rem + 2pt);
     letter-spacing: .08em;
     border-radius: 999px;
     transition: background-color .22s, color .22s, border-color .22s;
@@ -873,9 +852,6 @@
     .topbar-actions .nav-pill-icon {
       display: block;
     }
-    .project-nav {
-      display: none;
-    }
     .topbar-actions .nav-pill-label {
       display: none;
     }
@@ -887,11 +863,6 @@
   <header class="topbar">
     <div class="topbar-inner">
       <div class="brand">Monochromatic Case Study</div>
-      <nav class="project-nav" aria-label="Hauptnavigation">
-        <a href="../index.html#work">Arbeiten</a>
-        <a href="../index.html#services">Leistungen</a>
-        <a href="../index.html#process">Prozess</a>
-      </nav>
       <div class="topbar-actions">
         <a class="nav-contact-mobile nav-pill" href="../index.html?contact=1" aria-label="Kontakt">
           <svg class="nav-pill-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
