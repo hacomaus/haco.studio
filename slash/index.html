@@ -42,6 +42,8 @@ main{min-height:0;min-width:0;overflow:hidden;display:grid;grid-template-rows:mi
 @media(max-height:500px){header{padding:6px 16px}h1{font-size:26px}main{padding:8px;gap:6px}.controls button,.controls select{padding:7px 10px}.hint{font-size:12px}}
 
 .turn img{inset:0;display:block;object-fit:contain;background:#fff;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.turn img:first-child{transform:scale(1.006)}
+.turn img:last-child{transform:rotateY(180deg) scale(1.006)}
 .book{perspective:1800px}
 
 /* A stationary overlay stays above the animated paper throughout each turn. */
