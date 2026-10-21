@@ -521,6 +521,10 @@
     box-sizing: border-box;
     align-self: center;
   }
+  .nav-item-has-submenu:hover .nav-submenu,
+  .nav-item-has-submenu:focus-within .nav-submenu {
+    transform: none;
+  }
   .acard {
     background: var(--cream); color: var(--ink);
     padding: 1.45rem 1.4rem 1.5rem 1.6rem; font-family: 'Space Mono', monospace; font-size: .84rem; line-height: 1.48;
@@ -1049,11 +1053,15 @@
       opacity: 1;
       pointer-events: auto;
       transform: none;
-      justify-self: start;
+      justify-self: auto;
+      align-self: center;
     }
     .nav-item-has-submenu {
       align-self: center;
-      width: max-content;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
     }
     .nav-item-has-submenu > a { margin-inline: auto; }
     .nav-links .nav-submenu a {
