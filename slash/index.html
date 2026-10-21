@@ -156,9 +156,9 @@ footer{grid-column:1 / -1;border-top:1px solid #d2d6e8;margin-top:1rem;padding-t
 }
 @media(max-width:720px){
   body{min-height:100dvh;display:flex;flex-direction:column}
-  .topbar-inner{grid-template-columns:auto minmax(0,1fr) auto;padding:.7rem 16px;gap:0}
+  .topbar-inner{grid-template-columns:auto minmax(0,1fr) auto;padding:.3875rem 16px;gap:0}
   .brand{display:contents}
-  .brand-logo{width:76px}
+  .brand-logo{width:70px}
   .topbar-actions{justify-self:end;display:inline-flex;align-items:center;gap:.4rem}
   .topbar-actions a+a{margin-left:0}
   .topbar-actions a{display:inline-flex;align-items:center;justify-content:center;width:2.25rem;height:2.25rem;padding:0}
@@ -187,9 +187,9 @@ footer{grid-column:1 / -1;border-top:1px solid #d2d6e8;margin-top:1rem;padding-t
   main{padding:.8rem 16px 2rem}
   .stage,.magazine-closed .stage{height:55vw;min-height:220px}
 }
-@media(max-width:600px){
-  .stage{touch-action:pan-y}
-  .stage .book,.stage .closed-cover{transform:scale(var(--magazine-zoom,1));transform-origin:center}
+@media(max-width:720px){
+  .stage{touch-action:none}
+  .stage .book,.stage .closed-cover{transform:translate(var(--magazine-x,0px),var(--magazine-y,0px)) scale(var(--magazine-zoom,1));transform-origin:center}
 }
 
 /* Filled button states invert their outline treatment using the cream text. */
@@ -206,19 +206,32 @@ footer{grid-column:1 / -1;border-top:1px solid #d2d6e8;margin-top:1rem;padding-t
 <div class="interaction-area"><div class="controls"><button id="start">Magazin öffnen</button><button id="middle">Zur Mitte</button><select id="pages" aria-label="Doppelseite auswählen"></select><button id="prev" disabled>Zurück</button><button id="next" disabled>Weiter</button><button id="reverse">Rückseite ansehen</button></div><p class="hint" id="hint" aria-live="polite">Den Umschlag anklicken,<span class="mobile-break"><br></span> um das Magazin zu öffnen.</p></div><footer><div class="footer-credit"><span>Designed &amp; coded by</span><span class="footer-logo"><img src="../assets/icons/logo-haco-punkt.svg" alt="haco."></span></div><div class="footer-meta"><a href="mailto:hallo@haco.studio" class="footer-email">hallo@haco.studio</a></div></footer></main>
 <script>
 const $=id=>document.getElementById(id),book=$('book'),stage=document.querySelector('.stage');let spread=34,opened=false,busy=false,rear=false;const src=n=>n===0?'assets/inside-left.jpg':n===69?'assets/inside-right.jpg':`assets/page-${String(n).padStart(2,'0')}.jpg`;
-let pinchStartDistance=0,pinchStartZoom=1;
-function resetZoom(){stage.style.setProperty('--magazine-zoom','1');}
+let pinchStartDistance=0,pinchStartZoom=1,pinchStartX=0,pinchStartY=0,pinchStartCenterX=0,pinchStartCenterY=0;
+function resetZoom(){stage.style.setProperty('--magazine-zoom','1');stage.style.setProperty('--magazine-x','0px');stage.style.setProperty('--magazine-y','0px');}
 function pinchDistance(touches){const dx=touches[0].clientX-touches[1].clientX,dy=touches[0].clientY-touches[1].clientY;return Math.hypot(dx,dy)}
+function touchCenter(touches){return{x:(touches[0].clientX+touches[1].clientX)/2,y:(touches[0].clientY+touches[1].clientY)/2}}
+function clampPan(x,y,zoom){
+ const target=opened?book:$('closedCover'),maxX=Math.max(0,(target.offsetWidth*zoom-stage.clientWidth)/2),maxY=Math.max(0,(target.offsetHeight*zoom-stage.clientHeight)/2);
+ return {x:Math.max(-maxX,Math.min(maxX,x)),y:Math.max(-maxY,Math.min(maxY,y))};
+}
 stage.addEventListener('touchstart',event=>{
  if(event.touches.length!==2)return;
  pinchStartDistance=pinchDistance(event.touches);
  pinchStartZoom=parseFloat(getComputedStyle(stage).getPropertyValue('--magazine-zoom'))||1;
+ pinchStartX=parseFloat(getComputedStyle(stage).getPropertyValue('--magazine-x'))||0;
+ pinchStartY=parseFloat(getComputedStyle(stage).getPropertyValue('--magazine-y'))||0;
+ const center=touchCenter(event.touches);
+ pinchStartCenterX=center.x;
+ pinchStartCenterY=center.y;
 },{passive:true});
 stage.addEventListener('touchmove',event=>{
  if(event.touches.length!==2||!pinchStartDistance)return;
  event.preventDefault();
  const zoom=Math.min(2.25,Math.max(1,pinchStartZoom*pinchDistance(event.touches)/pinchStartDistance));
+ const center=touchCenter(event.touches),pan=clampPan(pinchStartX+center.x-pinchStartCenterX,pinchStartY+center.y-pinchStartCenterY,zoom);
  stage.style.setProperty('--magazine-zoom',zoom.toFixed(3));
+ stage.style.setProperty('--magazine-x',`${pan.x}px`);
+ stage.style.setProperty('--magazine-y',`${pan.y}px`);
 },{passive:false});
 stage.addEventListener('touchend',event=>{if(event.touches.length<2)pinchStartDistance=0},{passive:true});
 const groups=[0,...Array.from({length:33},(_,i)=>(i+1)*2),68];for(const n of groups){const option=new Option(n===0?'Umschlag innen / Seite 1':n===68?'Seite 68 / Umschlag innen':`Seiten ${n} / ${n+1}`,n);$('pages').add(option)}
